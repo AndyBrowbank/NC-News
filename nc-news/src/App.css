@@ -1,5 +1,32 @@
 .App {
   text-align: center;
+  list-style: none;
+}
+
+#rcorners2 {
+  border-radius: 25px;
+  border: 5px solid #73ad21;
+  padding: 20px;
+  width: flex;
+  height: 150px;
+}
+
+.title {
+  background-color: rgb(109, 86, 136);
+}
+
+.mainArticleDisplay {
+  list-style: none;
+  background-color: rgb(121, 140, 196);
+  font-size: 20px;
+  padding: 1em;
+}
+
+.articleCard {
+  list-style: none;
+  padding: 5em;
+  font-size: 15px;
+  background-color: gold;
 }
 
 .App-logo {

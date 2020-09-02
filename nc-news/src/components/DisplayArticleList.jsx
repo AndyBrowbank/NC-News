@@ -7,11 +7,28 @@ const DisplayArticleList = (props) => {
   // add Loader?
 
   return (
-    <div>
-      <p>DisplayArticleList</p>
+    <div className="mainArticleDisplay">
+      <p>
+        <strong>Article List</strong>
+      </p>
       <ul>
         {articles.map((article) => {
-          return <li> {article.title}</li>;
+          return [
+            <li className="articleCardTitle">
+              {" "}
+              {article.title} written by {article.author}
+              <button className="readMoreButton">Read More</button>
+            </li>,
+
+            <li id="rcorners2" className="articleCard">
+              TOPIC -- {article.topic}
+              <br></br>
+              Comments:
+              <li role="img" aria-label="speech bubble">
+                💬
+              </li>
+            </li>,
+          ];
         })}
       </ul>
     </div>
