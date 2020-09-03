@@ -3,6 +3,17 @@
   list-style: none;
 }
 
+.readMoreButton {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 13px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  font-size: 16px;
+}
+
 #rcorners2 {
   border-radius: 25px;
   border: 5px solid #73ad21;

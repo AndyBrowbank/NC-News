@@ -1,20 +1,24 @@
 import React from "react";
 import { Router, Link } from "@reach/router";
 import NavBar from "./components/NavBar.jsx";
-import Title from "./components/Title.jsx";
+
 import HomePage from "./components/HomePage.jsx";
 import Articles from "./components/Articles.jsx";
+import Article from "./components/Article.jsx";
+import Topics from "./components/Topics.jsx";
 
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Title />
       <NavBar />
       <Router>
         <HomePage path="/" />
         <Articles path="/articles" />
+        <Article path="/articles/:article_id" />
+        <Articles path="/topics/:topic" />
+        <Topics path="/topics/" />
       </Router>
     </div>
   );

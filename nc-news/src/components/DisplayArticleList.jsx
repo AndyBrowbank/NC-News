@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "@reach/router";
 
 const DisplayArticleList = (props) => {
   const { articles } = props;
-  console.log("props = ", props);
+  console.log("in  DisplayArticleList - props = ", props);
 
   // add Loader?
 
@@ -17,7 +18,16 @@ const DisplayArticleList = (props) => {
             <li className="articleCardTitle">
               {" "}
               {article.title} written by {article.author}
-              <button className="readMoreButton">Read More</button>
+              <Link
+                to={`/articles/${article.article_id}`}
+                id="readMore"
+                className="readMoreButton"
+                onClick={(event) => {
+                  console.log("onClick handler needed");
+                }}
+              >
+                Read More
+              </Link>
             </li>,
 
             <li id="rcorners2" className="articleCard">
