@@ -4,8 +4,6 @@ import React, { Component } from "react";
 
 import { Link } from "@reach/router";
 
-import DisplayArticleList from "./DisplayArticleList";
-
 class Topics extends Component {
   state = {
     topics: [],
@@ -29,7 +27,6 @@ class Topics extends Component {
             );
           })}
         </ul>
-        <DisplayArticleList topics={topics} gettingTopicsList={this.topics} />
       </div>
     );
   }

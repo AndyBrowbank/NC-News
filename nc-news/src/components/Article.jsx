@@ -4,19 +4,20 @@ import * as api from "../utils/api";
 class Article extends Component {
   state = {
     article: {},
+    comments: [],
   };
 
   componentDidMount() {
-    // this.getArticle();
-    console.log("PROPS - ", this.props);
     const { article_id } = this.props;
-    console.log("article_id = ", article_id);
+
     this.gettingArticle(article_id);
+    this.gettingComments(article_id);
   }
 
   render() {
     const { article } = this.state;
-    console.log(this.state);
+    const { comments } = this.state;
+
     return (
       <main>
         <section>
@@ -24,11 +25,28 @@ class Article extends Component {
             <em>{article.title} (... continued)</em>
             <br></br>
           </p>
+          <p>{article.topic}</p>
 
           <li> {article.body}</li>
           <p>Comments :</p>
           <button>Show/Hide comments</button>
-          <p>Votes :</p>
+          <ul>
+            {comments.map((comment) => {
+              const { body, author, votes } = comment;
+              return [
+                <li>
+                  <strong>{author}</strong>
+                  <li>
+                    {body}
+
+                    <li>Votes {votes}</li>
+                    <br></br>
+                    <br></br>
+                  </li>
+                </li>,
+              ];
+            })}
+          </ul>
         </section>
       </main>
     );
@@ -36,8 +54,15 @@ class Article extends Component {
 
   gettingArticle = (article_id) => {
     api.getArticle(article_id).then((article) => {
-      console.log(article);
       this.setState({ article });
+    });
+  };
+
+  gettingComments = (article_id) => {
+    api.getComments(article_id).then(({ comments }) => {
+      console.log(comments);
+
+      this.setState({ comments });
     });
   };
 }

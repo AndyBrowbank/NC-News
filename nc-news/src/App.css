@@ -5,12 +5,13 @@
 
 .readMoreButton {
   background-color: #4caf50; /* Green */
+  border-radius: 25px;
   border: none;
   color: white;
-  padding: 13px 25px;
+  padding: 13px 5px;
   text-align: center;
   text-decoration: none;
-  display: flex;
+  display: block;
   font-size: 16px;
 }
 

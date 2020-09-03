@@ -24,8 +24,17 @@ export const getAllTopics = () => {
   return axios
     .get("https://h-e-r-o-i-k.herokuapp.com/api/topics")
     .then((res) => {
-      console.log("getAllTopics res = ", res);
       const { topics } = res.data;
       return topics;
+    });
+};
+export const getComments = (article_id) => {
+  return axios
+    .get(
+      `https://h-e-r-o-i-k.herokuapp.com/api/articles/${article_id}/comments`
+    )
+    .then((res) => {
+      console.log("in getComments = ", res.data);
+      return res.data;
     });
 };
