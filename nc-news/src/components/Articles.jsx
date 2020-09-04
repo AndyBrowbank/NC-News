@@ -6,8 +6,17 @@ class Articles extends Component {
   state = {
     articles: [],
     isLoading: true,
+    value: {},
+    order: {},
   };
 
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+  handleSubmit(event) {
+    this.gettingArticleList();
+    event.preventDefault();
+  }
   componentDidMount() {
     this.gettingArticleList(this.props.topic);
   }
@@ -21,21 +30,32 @@ class Articles extends Component {
     return (
       <div>
         <h3>List of articles below</h3>
+        <form onSubmit={this.handleSubmit}>
+          <span>sort by </span>
+          <select
+            id="sort"
+            value={this.state.value}
+            onChange={this.handleChange}
+          >
+            <option value="Select">Select</option>
+            <option value="date_created">date created</option>
+            <option value="comment_count">comment count</option>
+            <option value="votes">votes</option>
+            <option value="topic">topic</option>
+          </select>
+          <span>order by</span>
+          <select
+            id="order"
+            value={this.state.value}
+            onChange={this.handleChange}
+          >
+            <option value="Select">Select</option>
+            <option value="ascending">ascending</option>
+            <option value="descending">descending</option>
+          </select>
 
-        <span>sort by </span>
-        <select
-          id="sort"
-          onClick={(event) => {
-            this.gettingArticleList(event.target.value);
-          }}
-        >
-          id="topicChoice" onChange={this.change}
-          value={this.state.value}><option value="Select">Select</option>
-          <option value="date_created">date created</option>
-          <option value="comment_count">comment count</option>
-          <option value="votes">votes</option>
-          <option value="topic">topic</option>
-        </select>
+          <input type="submit" value="Submit" />
+        </form>
 
         <ul>
           {articles.map((article) => {
@@ -67,7 +87,7 @@ class Articles extends Component {
       </div>
     );
   }
-  gettingArticleList = (topic) => {
+  gettingArticleList = (topic, sort, order) => {
     return api.getAllArticles().then((articles) => {
       this.setState({ articles, isLoading: false });
     });
