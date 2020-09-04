@@ -89,7 +89,7 @@ class Articles extends Component {
     );
   }
   gettingArticleList = (topic, sort, order) => {
-    return api.getAllArticles().then((articles) => {
+    return api.getAllArticles(topic, sort, order).then((articles) => {
       this.setState({ articles, isLoading: false });
     });
   };

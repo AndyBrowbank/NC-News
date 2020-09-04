@@ -9,19 +9,23 @@ import Topics from "./components/Topics.jsx";
 
 import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <NavBar />
-      <Router>
-        <HomePage path="/" />
-        <Articles path="/articles" />
-        <Article path="/articles/:article_id" />
-        <Articles path="/topics/:topic" />
-        <Topics path="/topics/" />
-      </Router>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    user: "jessjelly",
+  };
+  render() {
+    return (
+      <div className="App">
+        <NavBar user={this.state.user} />
+        <Router>
+          <HomePage path="/" />
+          <Articles path="/articles" />
+          <Article path="/articles/:article_id" />
+          <Articles path="/topics/:topic" />
+          <Topics path="/topics/" />
+        </Router>
+      </div>
+    );
+  }
 }
-
 export default App;
