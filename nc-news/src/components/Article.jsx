@@ -25,25 +25,40 @@ class Article extends Component {
             <em>{article.title} (... continued)</em>
             <br></br>
           </p>
+
           <p>{article.topic}</p>
 
           <li> {article.body}</li>
           <p>Comments :</p>
-          <button>Show/Hide comments</button>
-          <ul>
+          <button
+            onClick={() => {
+              var x = document.getElementById("showHideComments");
+              if (x.style.display === "none") {
+                x.style.display = "block";
+              } else {
+                x.style.display = "none";
+              }
+            }}
+          >
+            Show/Hide comments
+          </button>
+          <ul id="showHideComments">
             {comments.map((comment) => {
               const { body, author, votes } = comment;
               return [
-                <li>
-                  <strong>{author}</strong>
-                  <li>
-                    {body}
+                <div>
+                  <li id="comment">
+                    <strong>{author}</strong>
+                    <li>
+                      {body}
 
-                    <li>Votes {votes}</li>
-                    <br></br>
-                    <br></br>
+                      <li>Votes {votes}</li>
+                      <br></br>
+                      <br></br>
+                    </li>
                   </li>
-                </li>,
+                  ,
+                </div>,
               ];
             })}
           </ul>

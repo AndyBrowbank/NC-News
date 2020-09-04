@@ -62,7 +62,8 @@ class Articles extends Component {
             const { title, author, topic } = article;
             return [
               <li className="articleCardTitle">
-                {title} written by {author}
+                <span id="title">{title} </span>written by
+                <span id="author"> {author}</span>
                 <Link
                   to={`/articles/${article.article_id}`}
                   id="rCorners2"

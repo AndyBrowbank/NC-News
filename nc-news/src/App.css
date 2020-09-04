@@ -1,18 +1,47 @@
+#comment {
+  background-color: lightgrey;
+  text-align: left;
+  padding: 10px 60px;
+  border-radius: 25px;
+  border: 5px solid #73ad21;
+  margin: 10px 0px;
+}
+#title {
+  color: rgb(156, 8, 124);
+}
+#author {
+  color: slategrey;
+  list-style: none;
+}
+.articleCardTitle {
+  font-weight: bolder;
+  list-style: none;
+}
 .App {
   text-align: center;
+  list-style: none;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+#showHideComments {
+  background-color: lightcyan;
   list-style: none;
 }
 
 .readMoreButton {
-  background-color: #4caf50; /* Green */
-  border-radius: 25px;
-  border: none;
+  background-color: black;
   color: white;
-  padding: 13px 5px;
-  text-align: center;
-  text-decoration: none;
+  font-size: 14px;
+  padding: 10px 60px;
+  border-radius: 25px;
+  border: 5px solid #73ad21;
+  margin: 10px 0px;
+  cursor: pointer;
   display: block;
-  font-size: 16px;
+}
+
+.topic {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #rcorners2 {
