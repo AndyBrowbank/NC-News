@@ -31,6 +31,7 @@ class Article extends Component {
           <li> {article.body}</li>
           <p>Comments :</p>
           <button
+            class="button"
             onClick={() => {
               var x = document.getElementById("showHideComments");
               if (x.style.display === "none") {
