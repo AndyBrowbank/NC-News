@@ -41,8 +41,8 @@
 
 .button {
   display: inline-block;
-  padding: 15px 25px;
-  font-size: 24px;
+  padding: 10px 15px;
+  font-size: 18px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
@@ -74,6 +74,14 @@
   margin: 10px 0px;
   cursor: pointer;
   display: block;
+}
+
+#topicList {
+  color: green;
+}
+
+#topicsMap {
+  list-style: none;
 }
 
 .topic {

@@ -6,21 +6,27 @@ class Articles extends Component {
   state = {
     articles: [],
     isLoading: true,
-    value: {},
-    order: {},
+    sort: "",
+    order: "",
   };
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
-  handleSubmit(event) {
-    this.gettingArticleList();
-    event.preventDefault();
-  }
   componentDidMount() {
     this.gettingArticleList(this.props.topic);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log(
+      "in componentDidUpdate :) .....prevState = ",
+      prevState,
+      "prevProps = ",
+      prevProps,
+      "this.props = ",
+      this.props
+    );
+    if (prevProps.topic !== this.props.topic) {
+      this.gettingArticleList(this.props.topic);
+    }
+  }
   render() {
     const { articles, isLoading } = this.state;
     const { topic } = this.props;
@@ -29,41 +35,47 @@ class Articles extends Component {
 
     return (
       <div>
-        <h3>List of articles below</h3>
-        <form onSubmit={this.handleSubmit}>
-          <span>sort by </span>
-          <select
-            id="sort"
-            value={this.state.value}
-            onChange={this.handleChange}
-          >
-            <option value="Select">Select</option>
-            <option value="date_created">date created</option>
-            <option value="comment_count">comment count</option>
-            <option value="votes">votes</option>
-            <option value="topic">topic</option>
-          </select>
-          <span>order by</span>
-          <select
-            id="order"
-            value={this.state.value}
-            onChange={this.handleChange}
-          >
-            <option value="Select">Select</option>
-            <option value="ascending">ascending</option>
-            <option value="descending">descending</option>
-          </select>
+        <h3>
+          List of <span id="topicList">{topic}</span> articles below
+        </h3>
 
-          <input type="submit" value="Submit" />
-        </form>
+        <span>sort by </span>
+        <select
+          id="sort"
+          onClick={(event) => {
+            this.gettingArticleList(topic, event.target.value);
+          }}
+        >
+          <option value="Select">Select</option>
+          <option value="created_at">date created</option>
+          <option value="comment_count">comment count</option>
+          <option value="votes">votes</option>
+        </select>
+        <span>order by</span>
+        <select
+          id="order"
+          onClick={(event) => {
+            this.gettingArticleList(topic, this.state.sort, event.target.value);
+          }}
+        >
+          <option value="Select">Select</option>
+          <option value="asc">ascending</option>
+          <option value="desc">descending</option>
+        </select>
 
         <ul>
           {articles.map((article) => {
-            const { title, author, topic } = article;
+            const { title, author, topic, created_at, votes } = article;
             return [
               <li className="articleCardTitle">
                 <span id="title">{title} </span>written by
                 <span id="author"> {author}</span>
+                <br></br>
+                <br></br>date created
+                <span id="date_created"> {created_at} </span>
+                <br></br>
+                <br></br>votes
+                <span id="votes"> {votes} </span>
                 <Link
                   to={`/articles/${article.article_id}`}
                   id="rCorners2"
@@ -90,7 +102,8 @@ class Articles extends Component {
   }
   gettingArticleList = (topic, sort, order) => {
     return api.getAllArticles(topic, sort, order).then((articles) => {
-      this.setState({ articles, isLoading: false });
+      console.log("topic -", topic, "sort - ", sort, "order - ", order);
+      this.setState({ articles, isLoading: false, sort, order });
     });
   };
 }

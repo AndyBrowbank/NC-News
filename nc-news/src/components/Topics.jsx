@@ -12,12 +12,13 @@ class Topics extends Component {
   componentDidMount() {
     this.gettingTopicsList();
   }
+
   render() {
     const { topics } = this.state;
 
     return (
       <div>
-        <ul>
+        <ul id="topicsMap">
           {topics.map((topic) => {
             const { slug } = topic;
             return (
@@ -33,7 +34,7 @@ class Topics extends Component {
 
   gettingTopicsList = () => {
     api.getAllTopics().then((topics) => {
-      this.setState(topics);
+      this.setState({ topics });
     });
   };
 }
