@@ -37,12 +37,13 @@ export const getComments = (article_id) => {
       return res.data;
     });
 };
-export const postComment = (article_id) => {
+export const postComment = (comment, article_id, user) => {
   return axios
     .post(
-      `https://h-e-r-o-i-k.herokuapp.com/api/articles/${article_id}/comments`
+      `https://h-e-r-o-i-k.herokuapp.com/api/articles/${article_id}/comments`,
+      { username: user, body: comment }
     )
     .then((res) => {
-      return res.data;
+      return res.data.comment;
     });
 };

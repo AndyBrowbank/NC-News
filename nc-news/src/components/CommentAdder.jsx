@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 
-class commentAdder extends Component {
+class CommentAdder extends Component {
   state = {
     comment: "",
   };
 
-  componentDidMount() {}
+  // componentDidMount() {
+
+  // }
   render() {
     return (
       <div>
@@ -13,14 +15,18 @@ class commentAdder extends Component {
           Add your comment:
           <br></br>
           <br></br>
-          <input
-            id="commentForm"
-            value={this.state.comment}
-            placeholder="Please enter your comment..."
-            onChange={(event) => {
-              this.updateComment(event.target.value);
-            }}
-          ></input>
+          <label htmlFor="commentForm">
+            <input
+              id="commentForm"
+              value={this.state.comment}
+              placeholder="Please enter your comment..."
+              onChange={(event) => {
+                const input = event.target.value;
+                this.updateComment(input);
+              }}
+            ></input>
+          </label>
+          <button type="submit">Submit Comment</button>
         </form>
       </div>
     );
@@ -30,6 +36,11 @@ class commentAdder extends Component {
     this.setState({ comment: input });
   };
 
-  submitComment = (event) => {};
+  submitComment = (event) => {
+    event.preventDefault();
+    this.props.addComment(this.state.comment);
+    console.log("in submit comment");
+    this.setState({ comment: "" }); //reset comment field after submitting
+  };
 }
-export default commentAdder;
+export default CommentAdder;

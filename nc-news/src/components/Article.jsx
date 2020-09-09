@@ -51,6 +51,13 @@ class Article extends Component {
           <ul id="showHideComments">
             {comments.map((comment) => {
               const { body, author, votes } = comment;
+              console.log(
+                "ARTICLE.JSX - COMMENTS.MAP",
+                "comment - ",
+                comment,
+                " comments - ",
+                comments
+              );
               return [
                 <div>
                   <li id="comment">
@@ -85,9 +92,15 @@ class Article extends Component {
     });
   };
 
-  addComment = (article_id) => {
-    api.postComment(article_id).then(({ comment }) => {
-      this.setState({ comment });
+  addComment = (comment) => {
+    const { article_id, user } = this.props;
+    console.log("article.jsx props = ", this.props);
+    api.postComment(comment, article_id, user).then(({ comment }) => {
+      this.setState((currentState) => {
+        return { comments: [comment, ...currentState.comments] };
+      });
+      // setState callback (setState(updater, callback)) update comment then
+      //spread rest of current comments and return the lot
     });
   };
 }

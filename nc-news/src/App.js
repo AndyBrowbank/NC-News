@@ -18,8 +18,11 @@ class App extends React.Component {
         <NavBar user={this.state.user} />
         <Router>
           <Articles path="/articles" />
-          <Article path="/articles/:article_id" />
-          <Article path="/articles/:article_id/comments" />
+          <Article path="/articles/:article_id" user={this.state.user} />
+          <Article
+            path="/articles/:article_id/comments"
+            user={this.state.user}
+          />
           <Articles path="/topics/:topic" />
           <Topics path="/topics/" />
         </Router>
