@@ -1,8 +1,7 @@
 import React from "react";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import NavBar from "./components/NavBar.jsx";
 
-import HomePage from "./components/HomePage.jsx";
 import Articles from "./components/Articles.jsx";
 import Article from "./components/Article.jsx";
 import Topics from "./components/Topics.jsx";
@@ -18,7 +17,6 @@ class App extends React.Component {
       <div className="App">
         <NavBar user={this.state.user} />
         <Router>
-          {/* <HomePage path="/ " /> */}
           <Articles path="/articles" />
           <Article path="/articles/:article_id" />
           <Article path="/articles/:article_id/comments" />

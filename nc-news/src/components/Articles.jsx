@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Link } from "@reach/router";
+import { Link } from "@reach/router";
 import * as api from "../utils/api";
 
 class Articles extends Component {
@@ -15,14 +15,6 @@ class Articles extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(
-      "in componentDidUpdate :) .....prevState = ",
-      prevState,
-      "prevProps = ",
-      prevProps,
-      "this.props = ",
-      this.props
-    );
     if (prevProps.topic !== this.props.topic) {
       this.gettingArticleList(this.props.topic);
     }
@@ -90,9 +82,10 @@ class Articles extends Component {
                 TOPIC -- {topic}
                 <br></br>
                 Comment count: {article.comment_count}
-                <li role="img" aria-label="speech bubble">
+                <br></br>
+                <span role="img" aria-label="speech bubble">
                   💬
-                </li>
+                </span>
               </li>,
             ];
           })}
@@ -102,7 +95,6 @@ class Articles extends Component {
   }
   gettingArticleList = (topic, sort, order) => {
     return api.getAllArticles(topic, sort, order).then((articles) => {
-      console.log("topic -", topic, "sort - ", sort, "order - ", order);
       this.setState({ articles, isLoading: false, sort, order });
     });
   };

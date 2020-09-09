@@ -1,4 +1,3 @@
-import { Router } from "@reach/router";
 import * as api from "../utils/api";
 import React, { Component } from "react";
 
