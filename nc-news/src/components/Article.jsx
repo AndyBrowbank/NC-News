@@ -49,31 +49,28 @@ class Article extends Component {
           <CommentAdder addComment={this.addComment} />
 
           <ul id="showHideComments">
-            {comments.map((comment) => {
-              const { body, author, votes } = comment;
-              console.log(
-                "ARTICLE.JSX - COMMENTS.MAP",
-                "comment - ",
-                comment,
-                " comments - ",
-                comments
-              );
-              return [
-                <div>
-                  <li id="comment">
-                    <strong>{author}</strong>
-                    <li>
-                      {body}
+            {
+              (console.log(comments),
+              comments.map((comment) => {
+                const { body, author, votes } = comment;
+                console.log(body);
+                return [
+                  <div>
+                    <li id="comment">
+                      <strong>{author}</strong>
+                      <li>
+                        {body}
 
-                      <li>Votes {votes}</li>
-                      <br></br>
-                      <br></br>
+                        <li>Votes {votes}</li>
+                        <br></br>
+                        <br></br>
+                      </li>
                     </li>
-                  </li>
-                  ,
-                </div>,
-              ];
-            })}
+                    ,
+                  </div>,
+                ];
+              }))
+            }
           </ul>
         </section>
       </main>
