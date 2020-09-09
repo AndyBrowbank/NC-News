@@ -34,7 +34,15 @@ export const getComments = (article_id) => {
       `https://h-e-r-o-i-k.herokuapp.com/api/articles/${article_id}/comments`
     )
     .then((res) => {
-      console.log("in getComments = ", res.data);
+      return res.data;
+    });
+};
+export const postComment = (article_id) => {
+  return axios
+    .post(
+      `https://h-e-r-o-i-k.herokuapp.com/api/articles/${article_id}/comments`
+    )
+    .then((res) => {
       return res.data;
     });
 };

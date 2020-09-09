@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
+import CommentAdder from "../components/CommentAdder";
 
 class Article extends Component {
   state = {
@@ -31,7 +32,7 @@ class Article extends Component {
           <li> {article.body}</li>
           <p>Comments :</p>
           <button
-            class="button"
+            className="button"
             onClick={() => {
               var x = document.getElementById("showHideComments");
               if (x.style.display === "none") {
@@ -43,6 +44,10 @@ class Article extends Component {
           >
             Show/Hide comments
           </button>
+          <br></br>
+          <br></br>
+          <CommentAdder addComment={this.addComment} />
+
           <ul id="showHideComments">
             {comments.map((comment) => {
               const { body, author, votes } = comment;
@@ -76,9 +81,13 @@ class Article extends Component {
 
   gettingComments = (article_id) => {
     api.getComments(article_id).then(({ comments }) => {
-      console.log(comments);
-
       this.setState({ comments });
+    });
+  };
+
+  addComment = (article_id) => {
+    api.postComment(article_id).then(({ comment }) => {
+      this.setState({ comment });
     });
   };
 }

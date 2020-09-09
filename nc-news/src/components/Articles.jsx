@@ -89,7 +89,7 @@ class Articles extends Component {
               <li id="rcorners2" className="articleCard">
                 TOPIC -- {topic}
                 <br></br>
-                Comments:
+                Comment count: {article.comment_count}
                 <li role="img" aria-label="speech bubble">
                   💬
                 </li>

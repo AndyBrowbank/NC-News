@@ -21,6 +21,7 @@ class App extends React.Component {
           {/* <HomePage path="/ " /> */}
           <Articles path="/articles" />
           <Article path="/articles/:article_id" />
+          <Article path="/articles/:article_id/comments" />
           <Articles path="/topics/:topic" />
           <Topics path="/topics/" />
         </Router>
