@@ -13,6 +13,13 @@ class Article extends Component {
 
     this.gettingArticle(article_id);
     this.gettingComments(article_id);
+    this.removeComment();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.comments !== this.state.comments) {
+      this.gettingComments(this.state.comments);
+    }
   }
 
   render() {
@@ -64,6 +71,20 @@ class Article extends Component {
                         <li>Votes {votes}</li>
                         <br></br>
                         <br></br>
+                        {author === this.props.user ? (
+                          <button
+                            onClick={() =>
+                              this.removeComment(comment.comment_id)
+                            }
+                          >
+                            delete comment
+                          </button>
+                        ) : (
+                          <p>
+                            do not display delete button, maybe VOTE ? as can't
+                            vote on own article
+                          </p>
+                        )}
                       </li>
                     </li>
                     ,
@@ -100,6 +121,17 @@ class Article extends Component {
         // setState callback (setState(updater, callback)) update comment then
         //spread rest of current comments and return the lot
       });
+  };
+
+  removeComment = (comment_id) => {
+    console.log("COMMENT_ID = ", comment_id);
+
+    api.deleteComment(comment_id).then((comment_id) => {
+      this.setState((currentState) => {
+        // want to setState with comments !== current comment - filter ?
+        return { comments: [...currentState.comments] };
+      });
+    });
   };
 }
 

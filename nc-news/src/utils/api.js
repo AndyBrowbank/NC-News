@@ -47,3 +47,8 @@ export const postComment = (comment, article_id, user) => {
       return res.data.comment;
     });
 };
+export const deleteComment = (comment_id) => {
+  return axios.delete(
+    `https://h-e-r-o-i-k.herokuapp.com/api/comments/${comment_id}`
+  );
+};
