@@ -6,6 +6,7 @@ class Article extends Component {
   state = {
     article: {},
     comments: [],
+    isLoading: true,
   };
 
   componentDidMount() {
@@ -13,19 +14,18 @@ class Article extends Component {
 
     this.gettingArticle(article_id);
     this.gettingComments(article_id);
-    this.removeComment();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.comments !== this.state.comments) {
-      this.gettingComments(this.state.comments);
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.comments !== this.state.comments) {
+  //     this.gettingComments(this.state.comments);
+  //   }
+  // }
 
   render() {
-    const { article } = this.state;
-    const { comments } = this.state;
+    const { article, comments, isLoading } = this.state;
 
+    if (isLoading) return <h3>...Loading page please wait...</h3>;
     return (
       <main>
         <section>
@@ -38,7 +38,7 @@ class Article extends Component {
 
           <li> {article.body}</li>
           <p>Comments :</p>
-          <button
+          {/* <button
             className="button"
             onClick={() => {
               var x = document.getElementById("showHideComments");
@@ -50,49 +50,45 @@ class Article extends Component {
             }}
           >
             Show/Hide comments
-          </button>
+          </button> */}
           <br></br>
           <br></br>
           <CommentAdder addComment={this.addComment} />
 
-          <ul id="showHideComments">
-            {
-              (console.log(comments),
-              comments.map((comment) => {
-                const { body, author, votes } = comment;
-                console.log(body);
-                return [
-                  <div>
-                    <li id="comment">
-                      <strong>{author}</strong>
-                      <li>
-                        {body}
+          {/* <ul id="showHideComments"> */}
+          {
+            (console.log(comments),
+            comments.map((comment) => {
+              const { body, author, votes, comment_id } = comment;
 
-                        <li>Votes {votes}</li>
-                        <br></br>
-                        <br></br>
-                        {author === this.props.user ? (
-                          <button
-                            onClick={() =>
-                              this.removeComment(comment.comment_id)
-                            }
-                          >
-                            delete comment
-                          </button>
-                        ) : (
-                          <p>
-                            do not display delete button, maybe VOTE ? as can't
-                            vote on own article
-                          </p>
-                        )}
-                      </li>
+              return [
+                <div>
+                  <li id="comment">
+                    <strong>{author}</strong>
+                    <li>
+                      {body}
+
+                      <li>Votes {votes}</li>
+                      <br></br>
+                      <br></br>
+                      {author === this.props.user ? (
+                        <button onClick={() => this.removeComment(comment_id)}>
+                          delete comment
+                        </button>
+                      ) : (
+                        <p>
+                          do not display delete button, maybe VOTE ? as can't
+                          vote on own article
+                        </p>
+                      )}
                     </li>
-                    ,
-                  </div>,
-                ];
-              }))
-            }
-          </ul>
+                  </li>
+                  ,
+                </div>,
+              ];
+            }))
+          }
+          {/* </ul> */}
         </section>
       </main>
     );
@@ -100,7 +96,7 @@ class Article extends Component {
 
   gettingArticle = (article_id) => {
     api.getArticle(article_id).then((article) => {
-      this.setState({ article });
+      this.setState({ article, isLoading: false });
     });
   };
 
@@ -114,7 +110,6 @@ class Article extends Component {
     api
       .postComment(comment, this.props.article_id, this.props.user)
       .then((comment) => {
-        console.log("comment = ", comment);
         this.setState((currentState) => {
           return { comments: [comment, ...currentState.comments] };
         });
@@ -124,14 +119,15 @@ class Article extends Component {
   };
 
   removeComment = (comment_id) => {
-    console.log("COMMENT_ID = ", comment_id);
-
-    api.deleteComment(comment_id).then((comment_id) => {
+    api.deleteComment(comment_id).then(
       this.setState((currentState) => {
-        // want to setState with comments !== current comment - filter ?
-        return { comments: [...currentState.comments] };
-      });
-    });
+        const comments = currentState.comments.filter((comment) => {
+          return comment.comment_id !== comment_id;
+        });
+        console.log("COMMENTS = ", comments);
+        return { comments };
+      })
+    );
   };
 }
 
