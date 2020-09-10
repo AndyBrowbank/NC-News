@@ -5,9 +5,6 @@ class CommentAdder extends Component {
     comment: "",
   };
 
-  // componentDidMount() {
-
-  // }
   render() {
     return (
       <div>
@@ -39,7 +36,7 @@ class CommentAdder extends Component {
   submitComment = (event) => {
     event.preventDefault();
     this.props.addComment(this.state.comment);
-    console.log("in submit comment");
+
     this.setState({ comment: "" }); //reset comment field after submitting
   };
 }

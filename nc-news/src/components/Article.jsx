@@ -90,15 +90,16 @@ class Article extends Component {
   };
 
   addComment = (comment) => {
-    const { article_id, user } = this.props;
-    console.log("article.jsx props = ", this.props);
-    api.postComment(comment, article_id, user).then(({ comment }) => {
-      this.setState((currentState) => {
-        return { comments: [comment, ...currentState.comments] };
+    api
+      .postComment(comment, this.props.article_id, this.props.user)
+      .then((comment) => {
+        console.log("comment = ", comment);
+        this.setState((currentState) => {
+          return { comments: [comment, ...currentState.comments] };
+        });
+        // setState callback (setState(updater, callback)) update comment then
+        //spread rest of current comments and return the lot
       });
-      // setState callback (setState(updater, callback)) update comment then
-      //spread rest of current comments and return the lot
-    });
   };
 }
 
