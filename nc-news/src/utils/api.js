@@ -52,3 +52,12 @@ export const deleteComment = (comment_id) => {
     `https://h-e-r-o-i-k.herokuapp.com/api/comments/${comment_id}`
   );
 };
+
+export const articleVote = (article_id, inc_votes) => {
+  return axios.patch(
+    `https://h-e-r-o-i-k.herokuapp.com/api/articles/${article_id}`,
+    {
+      inc_votes,
+    }
+  );
+};

@@ -8,6 +8,8 @@ class Articles extends Component {
     isLoading: true,
     sort: "",
     order: "",
+    user: this.props.user,
+    votes: "",
   };
 
   componentDidMount() {
@@ -57,7 +59,14 @@ class Articles extends Component {
 
         <ul>
           {articles.map((article) => {
-            const { title, author, topic, created_at, votes } = article;
+            const {
+              title,
+              author,
+              topic,
+              created_at,
+              votes,
+              article_id,
+            } = article;
             return [
               <li className="articleCardTitle">
                 <span id="title">{title} </span>written by
@@ -66,8 +75,16 @@ class Articles extends Component {
                 <br></br>date created
                 <span id="date_created"> {created_at} </span>
                 <br></br>
-                <br></br>votes
-                <span id="votes"> {votes} </span>
+                <br></br> votes&nbsp;&nbsp;
+                <span id="votes">
+                  {votes}{" "}
+                  <button onClick={() => this.handleVoteClick(1, article_id)}>
+                    👍
+                  </button>
+                  <button onClick={() => this.handleVoteClick(-1, article_id)}>
+                    👎
+                  </button>
+                </span>
                 <Link
                   to={`/articles/${article.article_id}`}
                   id="rCorners2"
@@ -96,6 +113,14 @@ class Articles extends Component {
   gettingArticleList = (topic, sort, order) => {
     return api.getAllArticles(topic, sort, order).then((articles) => {
       this.setState({ articles, isLoading: false, sort, order });
+    });
+  };
+
+  handleVoteClick = (vote, article_id) => {
+    api.articleVote(article_id, vote).then(() => {
+      this.setState((currentState) => {
+        return { votes: currentState.votes + vote };
+      });
     });
   };
 }

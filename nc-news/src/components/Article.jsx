@@ -33,29 +33,13 @@ class Article extends Component {
             <em>{article.title} (... continued)</em>
             <br></br>
           </p>
-
           <p>{article.topic}</p>
-
           <li> {article.body}</li>
           <p>Comments :</p>
-          {/* <button
-            className="button"
-            onClick={() => {
-              var x = document.getElementById("showHideComments");
-              if (x.style.display === "none") {
-                x.style.display = "block";
-              } else {
-                x.style.display = "none";
-              }
-            }}
-          >
-            Show/Hide comments
-          </button> */}
           <br></br>
           <br></br>
-          <CommentAdder addComment={this.addComment} />
-
-          {/* <ul id="showHideComments"> */}
+          <CommentAdder addComment={this.addComment} /> //make addComment
+          available // to CommentAdder
           {
             (console.log(comments),
             comments.map((comment) => {
