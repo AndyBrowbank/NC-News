@@ -20,6 +20,9 @@ class Articles extends Component {
     if (prevProps.topic !== this.props.topic) {
       this.gettingArticleList(this.props.topic);
     }
+    if (prevState.votes !== this.state.votes) {
+      this.gettingArticleList();
+    }
   }
   render() {
     const { articles, isLoading } = this.state;
@@ -73,15 +76,19 @@ class Articles extends Component {
                 <span id="author"> {author}</span>
                 <br></br>
                 <br></br>date created
-                <span id="date_created"> {created_at} </span>
+                <span id="date_created">
+                  {" "}
+                  {created_at.slice(0, 10).split("-").reverse().join("-")}{" "}
+                </span>
                 <br></br>
                 <br></br> votes&nbsp;&nbsp;
                 <span id="votes">
-                  {votes}{" "}
+                  {votes}
                   <button onClick={() => this.handleVoteClick(1, article_id)}>
-                    👍
+                    <span role="img" aria-label="thumbs up"></span>👍
                   </button>
                   <button onClick={() => this.handleVoteClick(-1, article_id)}>
+                    <span role="img" aria-label="thumbs down"></span>
                     👎
                   </button>
                 </span>

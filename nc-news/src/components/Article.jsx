@@ -38,8 +38,7 @@ class Article extends Component {
           <p>Comments :</p>
           <br></br>
           <br></br>
-          <CommentAdder addComment={this.addComment} /> //make addComment
-          available // to CommentAdder
+          <CommentAdder addComment={this.addComment} />
           {
             (console.log(comments),
             comments.map((comment) => {
