@@ -61,3 +61,12 @@ export const articleVote = (article_id, inc_votes) => {
     }
   );
 };
+
+export const commentVote = (comment_id, inc_votes) => {
+  return axios.patch(
+    `https://h-e-r-o-i-k.herokuapp.com/api/comments/${comment_id}`,
+    {
+      inc_votes,
+    }
+  );
+};

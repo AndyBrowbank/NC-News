@@ -7,13 +7,15 @@ class Article extends Component {
     article: {},
     comments: [],
     isLoading: true,
+    votes: "",
   };
 
   componentDidMount() {
     const { article_id } = this.props;
 
     this.gettingArticle(article_id);
-    this.gettingComments(article_id);
+    this.gettingComments(article_id); // re-render by calling gettingComments with article_id
+    //otherwise get undefined
   }
 
   // componentDidUpdate(prevProps, prevState) {
@@ -21,6 +23,12 @@ class Article extends Component {
   //     this.gettingComments(this.state.comments);
   //   }
   // }
+  componentDidUpdate(prevProps, prevState) {
+    const { article_id } = this.props;
+    if (prevState.votes !== this.state.votes) {
+      this.gettingComments(article_id);
+    }
+  }
 
   render() {
     const { article, comments, isLoading } = this.state;
@@ -39,38 +47,46 @@ class Article extends Component {
           <br></br>
           <br></br>
           <CommentAdder addComment={this.addComment} />
-          {
-            (console.log(comments),
-            comments.map((comment) => {
-              const { body, author, votes, comment_id } = comment;
+          {comments.map((comment) => {
+            console.log(comment);
+            const { body, author, votes, comment_id } = comment;
 
-              return [
-                <div>
-                  <li id="comment">
-                    <strong>{author}</strong>
-                    <li>
-                      {body}
+            return [
+              <div>
+                <li id="comment">
+                  <strong>{author}</strong>
+                  <li>
+                    {body}
 
-                      <li>Votes {votes}</li>
-                      <br></br>
-                      <br></br>
-                      {author === this.props.user ? (
-                        <button onClick={() => this.removeComment(comment_id)}>
-                          delete comment
+                    <li>Votes {votes}</li>
+                    <br></br>
+                    <br></br>
+                    {author === this.props.user ? (
+                      <button onClick={() => this.removeComment(comment_id)}>
+                        delete comment
+                      </button>
+                    ) : (
+                      <span id="votes">
+                        {votes}
+                        <button
+                          onClick={() => this.handleVoteClick(1, comment_id)}
+                        >
+                          <span role="img" aria-label="thumbs up"></span>👍
                         </button>
-                      ) : (
-                        <p>
-                          do not display delete button, maybe VOTE ? as can't
-                          vote on own article
-                        </p>
-                      )}
-                    </li>
+                        <button
+                          onClick={() => this.handleVoteClick(-1, comment_id)}
+                        >
+                          <span role="img" aria-label="thumbs down"></span>
+                          👎
+                        </button>
+                      </span>
+                    )}
                   </li>
-                  ,
-                </div>,
-              ];
-            }))
-          }
+                </li>
+                ,
+              </div>,
+            ];
+          })}
           {/* </ul> */}
         </section>
       </main>
@@ -111,6 +127,14 @@ class Article extends Component {
         return { comments };
       })
     );
+  };
+
+  handleVoteClick = (vote, comment_id) => {
+    api.commentVote(comment_id, vote).then(() => {
+      this.setState((currentState) => {
+        return { votes: currentState.votes + vote };
+      });
+    });
   };
 }
 

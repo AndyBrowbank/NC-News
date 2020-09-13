@@ -78,7 +78,7 @@ class Articles extends Component {
                 <br></br>date created
                 <span id="date_created">
                   {" "}
-                  {created_at.slice(0, 10).split("-").reverse().join("-")}{" "}
+                  {created_at.slice(0, 10).split("-").reverse().join("-")}
                 </span>
                 <br></br>
                 <br></br> votes&nbsp;&nbsp;

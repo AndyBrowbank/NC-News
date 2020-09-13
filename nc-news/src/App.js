@@ -23,6 +23,8 @@ class App extends React.Component {
             path="/articles/:article_id/comments"
             user={this.state.user}
           />
+          <Article path="/comments/:comment_id" user={this.state.user} />
+
           <Articles path="/topics/:topic" />
           <Topics path="/topics/" />
         </Router>
