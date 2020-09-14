@@ -53,20 +53,9 @@ export const deleteComment = (comment_id) => {
   );
 };
 
-export const articleVote = (article_id, inc_votes) => {
-  return axios.patch(
-    `https://h-e-r-o-i-k.herokuapp.com/api/articles/${article_id}`,
-    {
-      inc_votes,
-    }
-  );
-};
-
-export const commentVote = (comment_id, inc_votes) => {
-  return axios.patch(
-    `https://h-e-r-o-i-k.herokuapp.com/api/comments/${comment_id}`,
-    {
-      inc_votes,
-    }
-  );
+export const patchVote = (id, inc_votes, path) => {
+  console.log("PATCH ", id, inc_votes, path);
+  return axios.patch(`https://h-e-r-o-i-k.herokuapp.com/api/${path}/${id}`, {
+    inc_votes,
+  });
 };

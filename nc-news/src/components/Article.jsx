@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import CommentAdder from "../components/CommentAdder";
+import Vote from "../components/Vote";
 
 class Article extends Component {
   state = {
@@ -31,29 +32,28 @@ class Article extends Component {
   }
 
   render() {
-    const { article, comments, isLoading } = this.state;
+    const { article, comments, isLoading, article_id } = this.state;
 
     if (isLoading) return <h3>...Loading page please wait...</h3>;
     return (
       <main>
-        <section>
+        <section key={article_id}>
           <p>
             <em>{article.title} (... continued)</em>
             <br></br>
           </p>
           <p>{article.topic}</p>
-          <li> {article.body}</li>
+          <li key={article_id}> {article.body}</li>
           <p>Comments :</p>
           <br></br>
           <br></br>
           <CommentAdder addComment={this.addComment} />
           {comments.map((comment) => {
-            console.log(comment);
             const { body, author, votes, comment_id } = comment;
 
             return [
               <div>
-                <li id="comment">
+                <li key={comment_id} id="comment">
                   <strong>{author}</strong>
                   <li>
                     {body}
@@ -67,18 +67,8 @@ class Article extends Component {
                       </button>
                     ) : (
                       <span id="votes">
-                        {votes}
-                        <button
-                          onClick={() => this.handleVoteClick(1, comment_id)}
-                        >
-                          <span role="img" aria-label="thumbs up"></span>👍
-                        </button>
-                        <button
-                          onClick={() => this.handleVoteClick(-1, comment_id)}
-                        >
-                          <span role="img" aria-label="thumbs down"></span>
-                          👎
-                        </button>
+                        {" "}
+                        <Vote id={comment_id} path={"comments"} />
                       </span>
                     )}
                   </li>
@@ -123,19 +113,22 @@ class Article extends Component {
         const comments = currentState.comments.filter((comment) => {
           return comment.comment_id !== comment_id;
         });
-        console.log("COMMENTS = ", comments);
+
         return { comments };
       })
     );
   };
 
-  handleVoteClick = (vote, comment_id) => {
-    api.commentVote(comment_id, vote).then(() => {
-      this.setState((currentState) => {
-        return { votes: currentState.votes + vote };
-      });
-    });
-  };
+  // handleVoteClick = (vote) => {
+  //   const { id } = this.props.id;
+  //   const { path } = this.props.path;
+
+  //   api.patchVote(id, vote, path).then(() => {
+  //     this.setState((currentState) => {
+  //       return { votes: currentState.votes + vote };
+  //     });
+  //   });
+  // };
 }
 
 export default Article;

@@ -8,16 +8,16 @@ class Vote extends Component {
 
   render() {
     const { votes } = this.state;
-    const { article_id } = this.props;
+    // const { article_id } = this.props;
     return (
       <section>
         <br></br>
         <span id="votes">
           {votes}
-          <button onClick={() => this.handleVoteClick(1, article_id)}>
+          <button onClick={() => this.handleVoteClick(1)}>
             <span role="img" aria-label="thumbs up"></span>👍
           </button>
-          <button onClick={() => this.handleVoteClick(-1, article_id)}>
+          <button onClick={() => this.handleVoteClick(-1)}>
             <span role="img" aria-label="thumbs down"></span>
             👎
           </button>
@@ -26,11 +26,14 @@ class Vote extends Component {
       </section>
     );
   }
-  handleVoteClick = (vote, article_id) => {
-    console.log(vote);
-    api.articleVote(article_id, vote);
-    this.setState((currentState) => {
-      return { votes: currentState.votes + vote };
+  handleVoteClick = (vote) => {
+    const { id } = this.props;
+    const { path } = this.props;
+
+    api.patchVote(id, vote, path).then(() => {
+      this.setState((currentState) => {
+        return { votes: currentState.votes + vote };
+      });
     });
   };
 }

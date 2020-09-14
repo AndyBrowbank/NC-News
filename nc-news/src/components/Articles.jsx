@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router";
+
 import * as api from "../utils/api";
-import Vote from "./Vote";
+
+import ArticleCard from "./ArticleCard";
 
 class Articles extends Component {
   state = {
@@ -10,7 +11,6 @@ class Articles extends Component {
     sort: "",
     order: "",
     user: this.props.user,
-    votes: "",
   };
 
   componentDidMount() {
@@ -21,14 +21,10 @@ class Articles extends Component {
     if (prevProps.topic !== this.props.topic) {
       this.gettingArticleList(this.props.topic);
     }
-    // if (prevState.votes !== this.state.votes) {
-    //   this.gettingArticleList();
-    // }
   }
   render() {
     const { articles, isLoading } = this.state;
     const { topic } = this.props;
-
     if (isLoading) return <h3>...Loading page please wait...</h3>;
 
     return (
@@ -36,7 +32,6 @@ class Articles extends Component {
         <h3>
           List of <span id="topicList">{topic}</span> articles below
         </h3>
-
         <span>sort by </span>
         <select
           id="sort"
@@ -60,60 +55,9 @@ class Articles extends Component {
           <option value="asc">ascending</option>
           <option value="desc">descending</option>
         </select>
-
         <ul>
           {articles.map((article) => {
-            const {
-              title,
-              author,
-              topic,
-              created_at,
-              votes,
-              article_id,
-            } = article;
-            return [
-              <li className="articleCardTitle">
-                <span id="title">{title} </span>written by
-                <span id="author"> {author}</span>
-                <br></br>
-                <br></br>date created
-                <span id="date_created">
-                  {" "}
-                  {created_at.slice(0, 10).split("-").reverse().join("-")}
-                </span>
-                <br></br>
-                <br></br> votes&nbsp;&nbsp;
-                <Vote article_id={article_id} />
-                {/* <span id="votes">
-                  {votes}
-                  <button onClick={() => this.handleVoteClick(1, article_id)}>
-                    <span role="img" aria-label="thumbs up"></span>👍
-                  </button>
-                  <button onClick={() => this.handleVoteClick(-1, article_id)}>
-                    <span role="img" aria-label="thumbs down"></span>
-                    👎
-                  </button>
-                </span> */}
-                <Link
-                  to={`/articles/${article.article_id}`}
-                  id="rCorners2"
-                  className="readMoreButton"
-                  onClick={(event) => {}}
-                >
-                  Read More
-                </Link>
-              </li>,
-
-              <li id="rcorners2" className="articleCard">
-                TOPIC -- {topic}
-                <br></br>
-                Comment count: {article.comment_count}
-                <br></br>
-                <span role="img" aria-label="speech bubble">
-                  💬
-                </span>
-              </li>,
-            ];
+            return <ArticleCard article={article} key={[article.article_id]} />;
           })}
         </ul>
       </div>
