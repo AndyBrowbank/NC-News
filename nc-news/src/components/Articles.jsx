@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import * as api from "../utils/api";
+import Vote from "./Vote";
 
 class Articles extends Component {
   state = {
@@ -20,9 +21,9 @@ class Articles extends Component {
     if (prevProps.topic !== this.props.topic) {
       this.gettingArticleList(this.props.topic);
     }
-    if (prevState.votes !== this.state.votes) {
-      this.gettingArticleList();
-    }
+    // if (prevState.votes !== this.state.votes) {
+    //   this.gettingArticleList();
+    // }
   }
   render() {
     const { articles, isLoading } = this.state;
@@ -82,7 +83,8 @@ class Articles extends Component {
                 </span>
                 <br></br>
                 <br></br> votes&nbsp;&nbsp;
-                <span id="votes">
+                <Vote article_id={article_id} />
+                {/* <span id="votes">
                   {votes}
                   <button onClick={() => this.handleVoteClick(1, article_id)}>
                     <span role="img" aria-label="thumbs up"></span>👍
@@ -91,7 +93,7 @@ class Articles extends Component {
                     <span role="img" aria-label="thumbs down"></span>
                     👎
                   </button>
-                </span>
+                </span> */}
                 <Link
                   to={`/articles/${article.article_id}`}
                   id="rCorners2"
@@ -120,14 +122,6 @@ class Articles extends Component {
   gettingArticleList = (topic, sort, order) => {
     return api.getAllArticles(topic, sort, order).then((articles) => {
       this.setState({ articles, isLoading: false, sort, order });
-    });
-  };
-
-  handleVoteClick = (vote, article_id) => {
-    api.articleVote(article_id, vote).then(() => {
-      this.setState((currentState) => {
-        return { votes: currentState.votes + vote };
-      });
     });
   };
 }
