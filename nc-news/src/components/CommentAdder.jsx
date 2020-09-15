@@ -15,6 +15,9 @@ class CommentAdder extends Component {
           <label htmlFor="commentForm">
             <input
               id="commentForm"
+              required
+              minLength="1"
+              default=""
               value={this.state.comment}
               placeholder="Please enter your comment..."
               onChange={(event) => {

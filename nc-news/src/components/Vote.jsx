@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
+import ErrorMessage from "../components/ErrorMessage";
 
 class Vote extends Component {
   state = {
     votes: 0,
+    error: false,
   };
 
   render() {
-    const { votes } = this.state;
-    // const { article_id } = this.props;
+    const { votes, error } = this.state;
+    if (error) return <ErrorMessage errorMessage={error} />;
+
     return (
       <section>
         <br></br>

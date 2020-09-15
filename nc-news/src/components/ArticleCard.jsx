@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as api from "../utils/api";
 import { Link } from "@reach/router";
 import Vote from "./Vote";
+import ErrorMessage from "../components/ErrorMessage";
 
 class ArticleCard extends Component {
   state = {
@@ -10,10 +11,11 @@ class ArticleCard extends Component {
     sort: "",
     order: "",
     user: this.props.user,
+    error: null,
   };
 
   render() {
-    const { isLoading } = this.state;
+    const { error, isLoading } = this.props;
     const {
       topic,
       title,
@@ -22,7 +24,9 @@ class ArticleCard extends Component {
       article_id,
       comment_count,
     } = this.props.article;
-
+    if (error)
+      return <ErrorMessage errorMessage={error.msg} status={error.status} />;
+    if (isLoading) return <h3>...Loading page please wait...</h3>;
     return (
       <div>
         <ul>
@@ -62,9 +66,15 @@ class ArticleCard extends Component {
   }
 
   gettingArticleList = (topic, sort, order) => {
-    return api.getAllArticles(topic, sort, order).then((articles) => {
-      this.setState({ articles, isLoading: false, sort, order });
-    });
+    return api
+      .getAllArticles(topic, sort, order)
+      .then((articles) => {
+        this.setState({ articles, isLoading: false, sort, order });
+      })
+      .catch((error) => {
+        const { status, data } = error.response;
+        this.setState({ error: { status: status, msg: data.msg } });
+      });
   };
 }
 

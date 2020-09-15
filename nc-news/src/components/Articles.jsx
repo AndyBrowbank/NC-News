@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import ErrorMessage from "../components/ErrorMessage";
 import * as api from "../utils/api";
 
 import ArticleCard from "./ArticleCard";
@@ -11,6 +11,7 @@ class Articles extends Component {
     sort: "",
     order: "",
     user: this.props.user,
+    error: null,
   };
 
   componentDidMount() {
@@ -23,8 +24,12 @@ class Articles extends Component {
     }
   }
   render() {
-    const { articles, isLoading } = this.state;
+    const { error, articles, isLoading } = this.state;
     const { topic } = this.props;
+
+    if (error)
+      return <ErrorMessage errorMessage={error.msg} status={error.status} />;
+
     if (isLoading) return <h3>...Loading page please wait...</h3>;
 
     return (
@@ -64,9 +69,16 @@ class Articles extends Component {
     );
   }
   gettingArticleList = (topic, sort, order) => {
-    return api.getAllArticles(topic, sort, order).then((articles) => {
-      this.setState({ articles, isLoading: false, sort, order });
-    });
+    return api
+      .getAllArticles(topic, sort, order)
+      .then((articles) => {
+        this.setState({ articles, isLoading: false, sort, order });
+      })
+      .catch((error) => {
+        const { status, data } = error.response;
+
+        this.setState({ error: { status: status, msg: data.msg } });
+      });
   };
 }
 

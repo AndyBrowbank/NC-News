@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as api from "../utils/api";
 import CommentAdder from "../components/CommentAdder";
 import Vote from "../components/Vote";
+import ErrorMessage from "../components/ErrorMessage";
 
 class Article extends Component {
   state = {
@@ -9,6 +10,7 @@ class Article extends Component {
     comments: [],
     isLoading: true,
     votes: "",
+    error: null,
   };
 
   componentDidMount() {
@@ -32,67 +34,80 @@ class Article extends Component {
   }
 
   render() {
-    const { article, comments, isLoading, article_id } = this.state;
-
+    const { error, article, comments, isLoading, article_id } = this.state;
+    if (error)
+      return <ErrorMessage errorMessage={error.msg} status={error.status} />;
     if (isLoading) return <h3>...Loading page please wait...</h3>;
     return (
-      <main>
-        <section key={article_id}>
-          <p>
-            <em>{article.title} (... continued)</em>
-            <br></br>
-          </p>
-          <p>{article.topic}</p>
-          <li key={article_id}> {article.body}</li>
-          <p>Comments :</p>
+      <main key={article}>
+        {/* <section key={article_id}> */}
+        <p>
+          <em>{article.title} (... continued)</em>
           <br></br>
-          <br></br>
-          <CommentAdder addComment={this.addComment} />
-          {comments.map((comment) => {
-            const { body, author, votes, comment_id } = comment;
+        </p>
+        <p>{article.topic}</p>
+        <li key={article_id}> {article.body}</li>
+        <p>Comments :</p>
+        <br></br>
+        <br></br>
+        <CommentAdder addComment={this.addComment} />
+        {comments.map((comment) => {
+          const { body, author, votes, comment_id } = comment;
 
-            return [
-              <div>
-                <li key={comment_id} id="comment">
-                  <strong>{author}</strong>
-                  <li>
-                    {body}
+          return [
+            <div>
+              <li key={comment_id} id="comment">
+                <strong>{author}</strong>
+                <li>
+                  {body}
 
-                    <li>Votes {votes}</li>
-                    <br></br>
-                    <br></br>
-                    {author === this.props.user ? (
-                      <button onClick={() => this.removeComment(comment_id)}>
-                        delete comment
-                      </button>
-                    ) : (
-                      <span id="votes">
-                        {" "}
-                        <Vote id={comment_id} path={"comments"} />
-                      </span>
-                    )}
-                  </li>
+                  <li>Votes {votes}</li>
+                  <br></br>
+                  <br></br>
+                  {author === this.props.user ? (
+                    <button onClick={() => this.removeComment(comment_id)}>
+                      delete comment
+                    </button>
+                  ) : (
+                    <span id="votes">
+                      {" "}
+                      <Vote id={comment_id} path={"comments"} />
+                    </span>
+                  )}
                 </li>
-                ,
-              </div>,
-            ];
-          })}
-          {/* </ul> */}
-        </section>
+              </li>
+              ,
+            </div>,
+          ];
+        })}
+        {/* </ul> */}
+        {/* </section> */}
       </main>
     );
   }
 
   gettingArticle = (article_id) => {
-    api.getArticle(article_id).then((article) => {
-      this.setState({ article, isLoading: false });
-    });
+    api
+      .getArticle(article_id)
+      .then((article) => {
+        this.setState({ article, isLoading: false });
+      })
+      .catch((error) => {
+        const { status, data } = error.response;
+        this.setState({ error: { status: status, msg: data.msg } });
+      });
   };
 
   gettingComments = (article_id) => {
-    api.getComments(article_id).then(({ comments }) => {
-      this.setState({ comments });
-    });
+    api
+      .getComments(article_id)
+      .then(({ comments }) => {
+        this.setState({ comments });
+      })
+      .catch((error) => {
+        const { status, data } = error.response;
+        this.setState({ error: { status: status, msg: data.msg } });
+      });
   };
 
   addComment = (comment) => {
@@ -108,27 +123,21 @@ class Article extends Component {
   };
 
   removeComment = (comment_id) => {
-    api.deleteComment(comment_id).then(
-      this.setState((currentState) => {
-        const comments = currentState.comments.filter((comment) => {
-          return comment.comment_id !== comment_id;
-        });
+    api
+      .deleteComment(comment_id)
+      .then(
+        this.setState((currentState) => {
+          const comments = currentState.comments.filter((comment) => {
+            return comment.comment_id !== comment_id;
+          });
 
-        return { comments };
-      })
-    );
+          return { comments };
+        })
+      )
+      .catch((err) => {
+        this.setState({ error: err.response.data.msg });
+      });
   };
-
-  // handleVoteClick = (vote) => {
-  //   const { id } = this.props.id;
-  //   const { path } = this.props.path;
-
-  //   api.patchVote(id, vote, path).then(() => {
-  //     this.setState((currentState) => {
-  //       return { votes: currentState.votes + vote };
-  //     });
-  //   });
-  // };
 }
 
 export default Article;
