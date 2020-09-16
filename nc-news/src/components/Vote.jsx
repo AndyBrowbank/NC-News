@@ -6,10 +6,11 @@ class Vote extends Component {
   state = {
     votes: 0,
     error: false,
+    disable: false,
   };
 
   render() {
-    const { votes, error } = this.state;
+    const { votes, error, disable } = this.state;
     if (error) return <ErrorMessage errorMessage={error} />;
 
     return (
@@ -17,19 +18,19 @@ class Vote extends Component {
         <br></br>
         <span id="votes">
           {votes}
-          <button onClick={() => this.handleVoteClick(1)}>
+          <button onClick={() => this.handleVoteClick(1)} disabled={disable}>
             <span role="img" aria-label="thumbs up"></span>👍
           </button>
-          <button onClick={() => this.handleVoteClick(-1)}>
+          <button onClick={() => this.handleVoteClick(-1)} disabled={disable}>
             <span role="img" aria-label="thumbs down"></span>
             👎
           </button>
         </span>
-        {/* <p>{votes} Votes</p> */}
       </section>
     );
   }
   handleVoteClick = (vote) => {
+    this.setState({ disable: true });
     const { id } = this.props;
     const { path } = this.props;
 
