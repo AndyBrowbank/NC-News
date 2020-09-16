@@ -37,29 +37,43 @@ class Articles extends Component {
         <h3>
           List of <span id="topicList">{topic}</span> articles below
         </h3>
-        <span>sort by </span>
-        <select
-          id="sort"
-          onClick={(event) => {
-            this.gettingArticleList(topic, event.target.value);
-          }}
-        >
-          <option value="Select">Select</option>
-          <option value="created_at">date created</option>
-          <option value="comment_count">comment count</option>
-          <option value="votes">votes</option>
-        </select>
-        <span>order by</span>
-        <select
-          id="order"
-          onClick={(event) => {
-            this.gettingArticleList(topic, this.state.sort, event.target.value);
-          }}
-        >
-          <option value="Select">Select</option>
-          <option value="asc">ascending</option>
-          <option value="desc">descending</option>
-        </select>
+        <form>
+          <label>sort by </label>
+          <select
+            id="sort"
+            onChange={(event) => {
+              this.gettingArticleList(
+                topic,
+
+                event.target.value
+              );
+            }}
+          >
+            <option value="" disabled selected>
+              Select
+            </option>
+            <option value="created_at">date created</option>
+            <option value="comment_count">comment count</option>
+            <option value="votes">votes</option>
+          </select>
+          <label>order by</label>
+          <select
+            id="order"
+            onChange={(event) => {
+              this.gettingArticleList(
+                topic,
+                this.state.sort,
+                event.target.value
+              );
+            }}
+          >
+            <option value="" disabled selected>
+              Select
+            </option>
+            <option value="asc">ascending</option>
+            <option value="desc">descending</option>
+          </select>
+        </form>
         <ul>
           {articles.map((article) => {
             return <ArticleCard article={article} key={[article.article_id]} />;

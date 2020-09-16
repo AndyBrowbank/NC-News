@@ -73,6 +73,7 @@
   list-style: none;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   border-radius: 15px;
+  align-items: center;
 }
 
 a {
@@ -108,10 +109,13 @@ a:hover::before {
 
 #topicsMap {
   list-style: none;
+  text-align: center;
+  color: black;
 }
 
 .topic {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
 }
 
 #rcorners2 {
@@ -137,6 +141,7 @@ a:hover::before {
   padding: 5em;
   font-size: 15px;
   background-color: gold;
+  text-align: center;
 }
 
 .App-logo {
