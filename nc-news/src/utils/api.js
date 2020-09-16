@@ -54,8 +54,13 @@ export const deleteComment = (comment_id) => {
 };
 
 export const patchVote = (id, inc_votes, path) => {
-  console.log("PATCH ", id, inc_votes, path);
-  return axios.patch(`https://h-e-r-o-i-k.herokuapp.com/api/${path}/${id}`, {
-    inc_votes,
-  });
+  return axios
+    .patch(`https://h-e-r-o-i-k.herokuapp.com/api/${path}/${id}`, {
+      inc_votes,
+    })
+    .then((res) => {
+      if (path === "articles") {
+        return res.data.article.votes;
+      } else console.log("comments", res);
+    });
 };

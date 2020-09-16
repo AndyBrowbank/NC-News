@@ -1,12 +1,50 @@
 #navbar {
   font-family: "Courier New", Courier, monospace;
-  color: steelblue;
-  background-color: lightskyblue;
+  color: rgba(0, 23, 31, 1);
+  background-color: rgba(0, 168, 232, 1);
   font-size: 2em;
   border-radius: 25px;
-  border: 5px solid #73ad21;
+  border: 5px solid rgba(0, 126, 167, 1);
   margin: 10px 0px;
   padding: 10px;
+}
+
+#sort {
+  color: rgba(0, 23, 31, 1);
+  background-color: rgba(0, 168, 232, 1);
+}
+
+#order {
+  color: rgba(0, 23, 31, 1);
+  background-color: rgba(0, 168, 232, 1);
+}
+
+#commentForm {
+  color: rgba(0, 23, 31, 1);
+  background-color: rgba(0, 168, 232, 1);
+}
+
+#card {
+  border-radius: 25px;
+  border: 5px solid rgba(0, 126, 167, 1);
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #e8eddf;
+  display: grid;
+}
+
+#singleCard {
+  border-radius: 25px;
+  border: 5px solid rgba(0, 126, 167, 1);
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #e8eddf;
+  display: grid;
+}
+
+#topicColour {
+  color: rgb(17, 104, 29);
+  font-weight: bolder;
 }
 
 #comment {
@@ -27,58 +65,46 @@
 .articleCardTitle {
   font-weight: bolder;
   list-style: none;
+  color: rgba(0, 23, 31, 1);
 }
 .App {
+  background-color: rgb(151, 197, 250);
   text-align: center;
   list-style: none;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-}
-
-#showHideComments {
-  background-color: lightcyan;
-  list-style: none;
-}
-
-.button {
-  display: inline-block;
-  padding: 10px 15px;
-  font-size: 18px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #fff;
-  background-color: #4caf50;
-  border: none;
   border-radius: 15px;
-  box-shadow: 0 9px #999;
 }
 
-.button:hover {
-  background-color: #3e8e41;
+a {
+  position: relative;
+  display: inline-block;
+
+  color: royalblue;
+  font-weight: 800;
+  text-decoration: underline;
+  overflow: hidden;
+}
+a::before {
+  position: absolute;
+  content: attr(data-content);
+  top: 0;
+  left: 0;
+  color: midnightblue;
+  text-decoration: underline;
+  overflow: hidden;
+  transition: width 275ms ease;
+}
+a::before {
+  width: 0;
+  white-space: nowrap;
+}
+a:hover::before {
+  width: 100%;
 }
 
-.button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-
-.readMoreButton {
-  background-color: black;
-  color: white;
-  font-size: 14px;
-  padding: 10px 60px;
-  border-radius: 25px;
-  border: 5px solid #73ad21;
-  margin: 10px 0px;
-  cursor: pointer;
-  display: block;
-}
-
-#topicList {
+/* #topicList {
   color: green;
-}
+} */
 
 #topicsMap {
   list-style: none;
@@ -91,9 +117,8 @@
 #rcorners2 {
   border-radius: 25px;
   border: 5px solid #73ad21;
-  padding: 20px;
+  padding: 10px;
   width: flex;
-  height: 150px;
 }
 
 .title {

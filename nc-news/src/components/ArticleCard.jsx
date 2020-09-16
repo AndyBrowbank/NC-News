@@ -23,34 +23,41 @@ class ArticleCard extends Component {
       created_at,
       article_id,
       comment_count,
+      votes,
     } = this.props.article;
     if (error)
       return <ErrorMessage errorMessage={error.msg} status={error.status} />;
     if (isLoading) return <h3>...Loading page please wait...</h3>;
     return (
-      <div>
+      <div id="card">
         <ul>
           <li className="articleCardTitle">
-            <span id="title">{title} </span>written by
+            <span id="title">
+              <u>{title}</u>{" "}
+            </span>
+            written by
             <span id="author"> {author}</span>
             <br></br>
-            <br></br>date created
+            <br></br>date created &nbsp;&nbsp;
             <span id="date_created">
               {created_at.slice(0, 10).split("-").reverse().join("-")}
             </span>
             <br></br>
-            <br></br> votes&nbsp;&nbsp;
-            <Vote id={article_id} path={"articles"} />
-            <Link
-              to={`/articles/${article_id}`}
-              id="rCorners2"
-              className="readMoreButton"
-              onClick={(event) => {}}
-            >
-              Read More
-            </Link>
+            <br></br> Voting &nbsp;&nbsp;
+            <Vote id={article_id} path={"articles"} votes={votes} />
+            <a href="#" data-content="Read More">
+              <Link
+                to={`/articles/${article_id}`}
+                id="rCorners2"
+                className="readMoreButton"
+                data-content="Read More"
+                onClick={(event) => {}}
+              >
+                Read More
+              </Link>
+            </a>
           </li>
-          ,
+
           <li id="rcorners2" className="articleCard">
             TOPIC -- {topic}
             <br></br>
@@ -59,6 +66,8 @@ class ArticleCard extends Component {
             <span role="img" aria-label="speech bubble">
               💬
             </span>
+            <br></br>
+            Vote: {votes}
           </li>
         </ul>
       </div>

@@ -12,7 +12,7 @@ class NavBar extends React.Component {
         </span>
 
         <Link to="/articles">
-          <h4>HomePage </h4>
+          <h4>Display All Articles </h4>
         </Link>
         <Topics />
       </div>

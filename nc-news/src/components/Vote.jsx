@@ -25,7 +25,7 @@ class Vote extends Component {
             👎
           </button>
         </span>
-        <p>{votes} Votes</p>
+        {/* <p>{votes} Votes</p> */}
       </section>
     );
   }
@@ -33,8 +33,10 @@ class Vote extends Component {
     const { id } = this.props;
     const { path } = this.props;
 
-    api.patchVote(id, vote, path).then(() => {
+    api.patchVote(id, vote, path).then((votefromApi) => {
+      console.log(votefromApi);
       this.setState((currentState) => {
+        console.log(currentState);
         return { votes: currentState.votes + vote };
       });
     });

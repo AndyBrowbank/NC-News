@@ -39,13 +39,15 @@ class Article extends Component {
       return <ErrorMessage errorMessage={error.msg} status={error.status} />;
     if (isLoading) return <h3>...Loading page please wait...</h3>;
     return (
-      <main key={article}>
+      <main key={article} id="singleCard">
         {/* <section key={article_id}> */}
-        <p>
-          <em>{article.title} (... continued)</em>
+        <p id="title">
+          <em>
+            <u>{article.title}</u> (... continued)
+          </em>
           <br></br>
         </p>
-        <p>{article.topic}</p>
+        <p id="topicColour">{article.topic}</p>
         <li key={article_id}> {article.body}</li>
         <p>Comments :</p>
         <br></br>
@@ -71,7 +73,7 @@ class Article extends Component {
                   ) : (
                     <span id="votes">
                       {" "}
-                      <Vote id={comment_id} path={"comments"} />
+                      <Vote id={comment_id} path={"comments"} votes={votes} />
                     </span>
                   )}
                 </li>
