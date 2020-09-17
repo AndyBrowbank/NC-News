@@ -3,7 +3,6 @@ import { Link } from "@reach/router";
 import Topics from "./Topics";
 
 const NavBar = (props) => {
-  console.log(props);
   return (
     <div>
       <h3 id="navbar">Welcome to NC News</h3>

@@ -54,7 +54,7 @@ class Article extends Component {
         <br></br>
         <CommentAdder addComment={this.addComment} />
         {comments.map((comment) => {
-          const { body, author, votes, comment_id } = comment;
+          const { body, author, votes, comment_id, article_id } = comment;
 
           return [
             <div>
@@ -73,7 +73,13 @@ class Article extends Component {
                   ) : (
                     <span id="votes">
                       {" "}
-                      <Vote id={comment_id} path={"comments"} votes={votes} />
+                      <Vote
+                        id={comment_id}
+                        path={"comments"}
+                        votes={votes}
+                        fetchComments={this.gettingComments}
+                        article_id={article_id}
+                      />
                     </span>
                   )}
                 </li>

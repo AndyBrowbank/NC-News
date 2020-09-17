@@ -34,6 +34,7 @@ export const getComments = (article_id) => {
       `https://h-e-r-o-i-k.herokuapp.com/api/articles/${article_id}/comments`
     )
     .then((res) => {
+      console.log("in getComments");
       return res.data;
     });
 };
@@ -62,5 +63,6 @@ export const patchVote = (id, inc_votes, path) => {
       if (path === "articles") {
         return res.data.article.votes;
       } else console.log("comments", res);
+      return res.data.comment.votes;
     });
 };

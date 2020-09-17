@@ -9,6 +9,13 @@ class Vote extends Component {
     disable: false,
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    const { article_id } = this.props;
+    if (prevState.votes !== this.state.votes) {
+      this.props.fetchComments(article_id);
+    }
+  }
+
   render() {
     const { votes, error, disable } = this.state;
     if (error) return <ErrorMessage errorMessage={error} />;
@@ -35,9 +42,9 @@ class Vote extends Component {
     const { path } = this.props;
 
     api.patchVote(id, vote, path).then((votefromApi) => {
-      console.log(votefromApi);
+      console.log("vote from api.patchVote", votefromApi);
       this.setState((currentState) => {
-        console.log(currentState);
+        console.log("state", currentState, "PROPS - ", this.props);
         return { votes: currentState.votes + vote };
       });
     });
