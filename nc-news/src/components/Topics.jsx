@@ -25,9 +25,9 @@ class Topics extends Component {
           {topics.map((topic) => {
             const { slug } = topic;
             return (
-              <li key={slug}>
+              <section key={slug}>
                 <Link to={`/topics/${slug}`}>{slug}</Link>
-              </li>
+              </section>
             );
           })}
         </ul>
@@ -41,8 +41,9 @@ class Topics extends Component {
       .then((topics) => {
         this.setState({ topics, isLoading: false });
       })
-      .catch((err) => {
-        this.setState({ error: err.response.data.msg });
+      .catch((error) => {
+        const { status, data } = error.response;
+        this.setState({ error: { status: status, msg: data.msg } });
       });
   };
 }

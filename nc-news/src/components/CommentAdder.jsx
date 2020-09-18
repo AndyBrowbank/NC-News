@@ -10,8 +10,7 @@ class CommentAdder extends Component {
       <div>
         <form onSubmit={this.submitComment}>
           Add your comment:
-          <br></br>
-          <br></br>
+          <p></p>
           <label htmlFor="commentForm">
             <input
               id="commentForm"
@@ -28,6 +27,7 @@ class CommentAdder extends Component {
           </label>
           <button type="submit">Submit Comment</button>
         </form>
+        <p></p>
       </div>
     );
   }

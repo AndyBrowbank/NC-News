@@ -1,90 +1,58 @@
-import React, { Component } from "react";
-import * as api from "../utils/api";
+import React from "react";
 import { Link } from "@reach/router";
 import Vote from "./Vote";
-import ErrorMessage from "../components/ErrorMessage";
 
-class ArticleCard extends Component {
-  state = {
-    article: [],
-    isLoading: true,
-    sort: "",
-    order: "",
-    user: this.props.user,
-    error: null,
-  };
+const ArticleCard = (props) => {
+  const {
+    topic,
+    title,
+    author,
+    created_at,
+    article_id,
+    comment_count,
+    votes,
+  } = props.article;
 
-  render() {
-    const { error, isLoading } = this.props;
-    const {
-      topic,
-      title,
-      author,
-      created_at,
-      article_id,
-      comment_count,
-      votes,
-    } = this.props.article;
-    if (error)
-      return <ErrorMessage errorMessage={error.msg} status={error.status} />;
-    if (isLoading) return <h3>...Loading page please wait...</h3>;
-    return (
-      <div id="card">
-        <ul>
-          <li className="articleCardTitle">
-            <span id="title">
-              <u>{title}</u>{" "}
-            </span>
-            written by
-            <span id="author"> {author}</span>
-            <br></br>
-            <br></br>date created &nbsp;&nbsp;
-            <span id="date_created">
-              {created_at.slice(0, 10).split("-").reverse().join("-")}
-            </span>
-            <br></br>
-            <br></br> Voting &nbsp;&nbsp;
-            <Vote id={article_id} path={"articles"} votes={votes} />
-            <a href="#" data-content="Read More">
-              <Link
-                to={`/articles/${article_id}`}
-                id="rCorners2"
-                className="readMoreButton"
-                data-content="Read More"
-                onClick={(event) => {}}
-              >
-                Read More
-              </Link>
-            </a>
-          </li>
+  return (
+    <div id="card">
+      <ul>
+        <li className="articleCardTitle">
+          <h4 id="title">
+            <u>{title}</u> written by&nbsp;&nbsp;
+            <strong>
+              <i>{author}</i>
+            </strong>
+          </h4>
+          <p></p>date created &nbsp;&nbsp;
+          <p id="date_created">
+            {created_at.slice(0, 10).split("-").reverse().join("-")}
+          </p>
+          <p></p>
+          Voting
+          <Vote id={article_id} path={"articles"} votes={votes} />
+          <Link
+            href="#"
+            data-content="Read More"
+            to={`/articles/${article_id}`}
+            id="rCorners2"
+            className="readMoreButton"
+            onClick={(event) => {}}
+          >
+            Read More
+          </Link>
+        </li>
 
-          <li id="rcorners2" className="articleCard">
-            TOPIC -- {topic}
-            <br></br>
-            Comment count: {comment_count}
-            <br></br>
-            <span role="img" aria-label="speech bubble">
-              💬
-            </span>
-            <br></br>
-            Vote: {votes}
-          </li>
-        </ul>
-      </div>
-    );
-  }
-
-  gettingArticleList = (topic, sort, order) => {
-    return api
-      .getAllArticles(topic, sort, order)
-      .then((articles) => {
-        this.setState({ articles, isLoading: false, sort, order });
-      })
-      .catch((error) => {
-        const { status, data } = error.response;
-        this.setState({ error: { status: status, msg: data.msg } });
-      });
-  };
-}
+        <li id="rcorners2" className="articleCard">
+          TOPIC -- {topic}
+          <p></p>
+          Comment count: {comment_count}
+          <span role="img" aria-label="speech bubble">
+            💬
+          </span>
+        </li>
+      </ul>
+    </div>
+  );
+};
 
 export default ArticleCard;

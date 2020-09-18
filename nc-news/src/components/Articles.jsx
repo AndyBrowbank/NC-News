@@ -49,7 +49,7 @@ class Articles extends Component {
               );
             }}
           >
-            <option value="" disabled selected>
+            <option value="" disabled>
               Select
             </option>
             <option value="created_at">date created</option>
@@ -67,7 +67,7 @@ class Articles extends Component {
               );
             }}
           >
-            <option value="" disabled selected>
+            <option value="" disabled>
               Select
             </option>
             <option value="asc">ascending</option>
@@ -76,23 +76,16 @@ class Articles extends Component {
         </form>
         <ul>
           {articles.map((article) => {
-            return <ArticleCard article={article} key={[article.article_id]} />;
+            return <ArticleCard article={article} key={article.article_id} />;
           })}
         </ul>
       </div>
     );
   }
   gettingArticleList = (topic, sort, order) => {
-    return api
-      .getAllArticles(topic, sort, order)
-      .then((articles) => {
-        this.setState({ articles, isLoading: false, sort, order });
-      })
-      .catch((error) => {
-        const { status, data } = error.response;
-
-        this.setState({ error: { status: status, msg: data.msg } });
-      });
+    return api.getAllArticles(topic, sort, order).then((articles) => {
+      this.setState({ articles, isLoading: false, sort, order });
+    });
   };
 }
 

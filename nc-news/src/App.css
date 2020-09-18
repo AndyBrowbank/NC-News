@@ -7,6 +7,7 @@
   border: 5px solid rgba(0, 126, 167, 1);
   margin: 10px 0px;
   padding: 10px;
+  text-align: center;
 }
 
 #sort {
@@ -27,10 +28,10 @@
 #card {
   border-radius: 25px;
   border: 5px solid rgba(0, 126, 167, 1);
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 1ex 1ex 1ex 1ex;
   background-color: #e8eddf;
-  display: grid;
+  position: relative;
+  margin-right: 3em;
 }
 
 #singleCard {
@@ -47,20 +48,39 @@
   font-weight: bolder;
 }
 
-#comment {
+.comment {
   background-color: lightgrey;
   text-align: left;
   padding: 10px 60px;
   border-radius: 25px;
   border: 5px solid #73ad21;
-  margin: 10px 0px;
+  margin: 10px 100px;
 }
 #title {
   color: rgb(156, 8, 124);
 }
 #author {
-  color: slategrey;
+  color: rgb(4, 125, 245);
   list-style: none;
+  border: 5px solid #637bad;
+  border-radius: 25px;
+  padding: 1em 0em 1em 0em;
+  background-color: rgb(140, 165, 202);
+  font-weight: bolder;
+}
+
+#commentBorder {
+  border-radius: 25px;
+  border: 5px solid #73ad21;
+}
+
+.commentBorder:nth-last-of-type(odd) {
+  background-color: rgb(78, 117, 201);
+  border-radius: 25px;
+}
+.commentBorder:nth-last-of-type(even) {
+  background-color: rgb(141, 141, 141);
+  border-radius: 25px;
 }
 .articleCardTitle {
   font-weight: bolder;
@@ -121,8 +141,9 @@ a:hover::before {
 #rcorners2 {
   border-radius: 25px;
   border: 5px solid #73ad21;
-  padding: 10px;
-  width: flex;
+  align-content: center;
+  padding: 10px 10px 10px 0px;
+  margin: 0em 3em 1em 1em;
 }
 
 .title {
@@ -134,11 +155,12 @@ a:hover::before {
   background-color: rgb(121, 140, 196);
   font-size: 20px;
   padding: 1em;
+  align-content: center;
 }
 
 .articleCard {
   list-style: none;
-  padding: 5em;
+  display: grid;
   font-size: 15px;
   background-color: gold;
   text-align: center;

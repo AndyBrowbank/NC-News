@@ -17,15 +17,9 @@ class Article extends Component {
     const { article_id } = this.props;
 
     this.gettingArticle(article_id);
-    this.gettingComments(article_id); // re-render by calling gettingComments with article_id
-    //otherwise get undefined
+    this.gettingComments(article_id);
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.comments !== this.state.comments) {
-  //     this.gettingComments(this.state.comments);
-  //   }
-  // }
   componentDidUpdate(prevProps, prevState) {
     const { article_id } = this.props;
     if (prevState.votes !== this.state.votes) {
@@ -39,58 +33,48 @@ class Article extends Component {
       return <ErrorMessage errorMessage={error.msg} status={error.status} />;
     if (isLoading) return <h3>...Loading page please wait...</h3>;
     return (
-      <main key={article} id="singleCard">
-        {/* <section key={article_id}> */}
-        <p id="title">
+      <div id="singleCard">
+        <section key={article_id} id="title">
           <em>
             <u>{article.title}</u> (... continued)
           </em>
-          <br></br>
-        </p>
-        <p id="topicColour">{article.topic}</p>
-        <li key={article_id}> {article.body}</li>
-        <p>Comments :</p>
-        <br></br>
-        <br></br>
+        </section>
+        <section id="topicColour">{article.topic}</section>
+        <li> {article.body}</li>
+        <h4>Comments :</h4>
+
         <CommentAdder addComment={this.addComment} />
         {comments.map((comment) => {
           const { body, author, votes, comment_id, article_id } = comment;
 
           return [
-            <div>
-              <li key={comment_id} id="comment">
+            <div key={comment_id} className="commentBorder">
+              <li id="author">
                 <strong>{author}</strong>
-                <li>
-                  {body}
-
-                  <li>Votes {votes}</li>
-                  <br></br>
-                  <br></br>
-                  {author === this.props.user ? (
-                    <button onClick={() => this.removeComment(comment_id)}>
-                      delete comment
-                    </button>
-                  ) : (
-                    <span id="votes">
-                      {" "}
-                      <Vote
-                        id={comment_id}
-                        path={"comments"}
-                        votes={votes}
-                        fetchComments={this.gettingComments}
-                        article_id={article_id}
-                      />
-                    </span>
-                  )}
-                </li>
               </li>
-              ,
+              <p className="comment">{body}</p>
+              <li>Votes {votes}</li>
+              <p></p>
+              {author === this.props.user ? (
+                <button onClick={() => this.removeComment(comment_id)}>
+                  delete comment
+                </button>
+              ) : (
+                <section id="votes">
+                  {" "}
+                  <Vote
+                    id={comment_id}
+                    path={"comments"}
+                    votes={votes}
+                    fetchComments={this.gettingComments}
+                    article_id={article_id}
+                  />
+                </section>
+              )}
             </div>,
           ];
         })}
-        {/* </ul> */}
-        {/* </section> */}
-      </main>
+      </div>
     );
   }
 
@@ -125,8 +109,6 @@ class Article extends Component {
         this.setState((currentState) => {
           return { comments: [comment, ...currentState.comments] };
         });
-        // setState callback (setState(updater, callback)) update comment then
-        //spread rest of current comments and return the lot
       });
   };
 
