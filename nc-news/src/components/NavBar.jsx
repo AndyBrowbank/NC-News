@@ -6,9 +6,9 @@ const NavBar = (props) => {
   return (
     <div>
       <h3 id="navbar">Welcome to NC News</h3>
-      <span>
+      <h3>
         Logged in as <section id="author">{props.user}</section>
-      </span>
+      </h3>
 
       <Link to="/articles">
         <h4>Display All Articles </h4>

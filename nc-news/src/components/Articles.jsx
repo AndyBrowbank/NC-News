@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ErrorMessage from "../components/ErrorMessage";
 import * as api from "../utils/api";
+import Vote from "../components/Vote";
 
 import ArticleCard from "./ArticleCard";
 
@@ -79,6 +80,13 @@ class Articles extends Component {
             return <ArticleCard article={article} key={article.article_id} />;
           })}
         </ul>
+        (
+        <Vote
+          id={this.state.articles.article_id}
+          path={"articles"}
+          votes={this.state.articles.votes}
+        />
+        )
       </div>
     );
   }

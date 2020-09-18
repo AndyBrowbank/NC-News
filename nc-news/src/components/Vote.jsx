@@ -15,7 +15,7 @@ class Vote extends Component {
 
     return (
       <div id="voteSection">
-        <span id="votes">
+        <section id="votes">
           {voteChange}
           <button onClick={() => this.handleVoteClick(1)} disabled={disable}>
             <span role="img" aria-label="thumbs up"></span>👍
@@ -27,7 +27,7 @@ class Vote extends Component {
           <span>{this.state.voteChange + this.props.votes} Votes</span>
           {/*increment vote
           total*/}
-        </span>
+        </section>
       </div>
     );
   }
