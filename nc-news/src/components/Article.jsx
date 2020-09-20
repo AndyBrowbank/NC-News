@@ -54,7 +54,7 @@ class Article extends Component {
               </li>
               <p className="comment">{body}</p>
               <li>Votes {votes}</li>
-              <p></p>
+
               {author === this.props.user ? (
                 <button onClick={() => this.removeComment(comment_id)}>
                   delete comment

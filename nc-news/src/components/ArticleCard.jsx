@@ -24,27 +24,27 @@ const ArticleCard = (props) => {
             </strong>
           </h4>
           <p></p>date created &nbsp;&nbsp;
-          <p id="date_created">
+          <h4 id="date_created">
             {created_at.slice(0, 10).split("-").reverse().join("-")}
-          </p>
-          <p></p>
-          Voting
+          </h4>
+          <h4>Voting</h4>
           <Vote id={article_id} path={"articles"} votes={votes} />
-          <Link
-            href="#"
-            data-content="Read More"
-            to={`/articles/${article_id}`}
-            id="rCorners2"
-            className="readMoreButton"
-            onClick={(event) => {}}
-          >
-            Read More
-          </Link>
+          <h4>
+            <Link
+              href="#"
+              data-content="Read More"
+              to={`/articles/${article_id}`}
+              id="rCorners2"
+              className="readMoreButton"
+              onClick={(event) => {}}
+            >
+              Read More
+            </Link>
+          </h4>
         </li>
 
         <li id="rcorners2" className="articleCard">
-          TOPIC -- {topic}
-          <p></p>
+          <h4>TOPIC -- {topic}</h4>
           Comment count: {comment_count}
           <span role="img" aria-label="speech bubble">
             💬

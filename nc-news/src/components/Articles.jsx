@@ -11,7 +11,7 @@ class Articles extends Component {
     isLoading: true,
     sort: "",
     order: "",
-    user: this.props.user,
+
     error: null,
   };
 
@@ -35,9 +35,7 @@ class Articles extends Component {
 
     return (
       <div>
-        <h3>
-          List of <span id="topicList">{topic}</span> articles below
-        </h3>
+        <h3>List of {topic} articles below</h3>
         <form>
           <label>sort by </label>
           <select
@@ -75,11 +73,11 @@ class Articles extends Component {
             <option value="desc">descending</option>
           </select>
         </form>
-        <ul>
+        <li>
           {articles.map((article) => {
             return <ArticleCard article={article} key={article.article_id} />;
           })}
-        </ul>
+        </li>
         (
         <Vote
           id={this.state.articles.article_id}
