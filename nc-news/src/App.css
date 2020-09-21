@@ -27,9 +27,6 @@ ul {
   background-color: rgba(0, 168, 232, 1);
 }
 
-*/
-/* 
-*/
 #commentForm {
   color: rgba(0, 23, 31, 1);
   background-color: rgba(0, 168, 232, 1);
@@ -43,48 +40,7 @@ ul {
 
   margin-right: auto;
 }
-/*
 
-#singleCard {
-  border-radius: 25px;
-  border: 5px solid rgba(0, 126, 167, 1);
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: #e8eddf;
-  /* display: grid; */
-/* } */
-
-/* #topicColour {
-  color: rgb(17, 104, 29);
-  font-weight: bolder;
-}
-
-.comment {
-  background-color: lightgrey;
-  text-align: left;
-  padding: 10px 60px;
-  border-radius: 25px;
-  border: 5px solid #73ad21;
-  margin: 10px 100px;
-}
-#title {
-  color: rgb(156, 8, 124);
-}
-#author {
-  color: rgb(4, 125, 245);
-  list-style: none;
-  border: 5px solid #637bad;
-  border-radius: 25px;
-  padding: 1em 0em 1em 0em;
-  background-color: rgb(140, 165, 202);
-  font-weight: bolder;
-}
-
-#commentBorder {
-  border-radius: 25px;
-  border: 5px solid #73ad21;
-}
-*/
 .DisplayCard:nth-last-of-type(odd) {
   background-color: rgb(78, 117, 201);
   border-radius: 25px;
@@ -125,45 +81,6 @@ a:hover::before {
   width: 100%;
 }
 
-/* #topicsMap {
-  list-style: none;
-  text-align: center;
-  color: black;
-}
-
-.topic {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
-}
-
-#rcorners2 {
-  border-radius: 25px;
-  border: 5px solid #73ad21;
-  align-content: center;
-  padding: 10px 10px 10px 0px;
-  margin: 0em 3em 1em 1em;
-}
-
-.title {
-  background-color: rgb(109, 86, 136);
-}
-
-.mainArticleDisplay {
-  list-style: none;
-  background-color: rgb(121, 140, 196);
-  font-size: 20px;
-  padding: 1em;
-  align-content: center;
-}
-
-.articleCard {
-  list-style: none;
-  display: grid;
-  font-size: 15px;
-  background-color: gold;
-  text-align: center;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -197,4 +114,4 @@ a:hover::before {
   to {
     transform: rotate(360deg);
   }
-} */
+}
