@@ -33,7 +33,7 @@ class Article extends Component {
           </em>
         </section>
         <section id="topicColour">{article.topic}</section>
-        <li> {article.body}</li>
+        <p> {article.body}</p>
         <h4>Comments :</h4>
 
         <CommentAdder addComment={this.addComment} />
@@ -42,11 +42,11 @@ class Article extends Component {
 
           return [
             <div key={comment_id} className="commentBorder">
-              <li id="author">
+              <p id="author">
                 <strong>{author}</strong>
-              </li>
+              </p>
               <p className="comment">{body}</p>
-              <li>Votes {votes}</li>
+              <p>Votes {votes}</p>
 
               {author === this.props.user ? (
                 <button onClick={() => this.removeComment(comment_id)}>

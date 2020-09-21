@@ -24,7 +24,7 @@ class Vote extends Component {
             <span role="img" aria-label="thumbs down"></span>
             👎
           </button>
-          <span>{this.state.voteChange + this.props.votes} Votes</span>
+          <h4>{this.state.voteChange + this.props.votes} Votes</h4>
           {/*increment vote
           total*/}
         </section>

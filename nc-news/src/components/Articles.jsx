@@ -73,11 +73,13 @@ class Articles extends Component {
             <option value="desc">descending</option>
           </select>
         </form>
-        <li>
-          {articles.map((article) => {
-            return <ArticleCard article={article} key={article.article_id} />;
-          })}
-        </li>
+        <ul>
+          <li>
+            {articles.map((article) => {
+              return <ArticleCard article={article} key={article.article_id} />;
+            })}
+          </li>
+        </ul>
         (
         <Vote
           id={this.state.articles.article_id}
