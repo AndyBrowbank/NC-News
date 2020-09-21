@@ -2,11 +2,14 @@ import React from "react";
 
 const ErrorMessage = (props) => {
   const { status, errorMessage } = props;
-  console.log("in ErrorMessage", status, errorMessage);
+  if (!errorMessage) {
+    return <h4>bad URL, please try again</h4>;
+  }
+
   return (
-    <p>
+    <h4>
       Sorry, something went wrong there. Error Code = {status} {errorMessage}:
-    </p>
+    </h4>
   );
 };
 

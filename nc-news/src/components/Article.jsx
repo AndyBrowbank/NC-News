@@ -20,13 +20,6 @@ class Article extends Component {
     this.gettingComments(article_id);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { article_id } = this.props;
-    if (prevState.votes !== this.state.votes) {
-      this.gettingComments(article_id);
-    }
-  }
-
   render() {
     const { error, article, comments, isLoading, article_id } = this.state;
     if (error)
@@ -66,7 +59,7 @@ class Article extends Component {
                     id={comment_id}
                     path={"comments"}
                     votes={votes}
-                    fetchComments={this.gettingComments}
+                    // fetchComments={this.gettingComments}
                     article_id={article_id}
                   />
                 </section>
