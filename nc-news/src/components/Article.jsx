@@ -26,7 +26,7 @@ class Article extends Component {
       return <ErrorMessage errorMessage={error.msg} status={error.status} />;
     if (isLoading) return <h3>...Loading page please wait...</h3>;
     return (
-      <div id="singleCard">
+      <div id="DisplayCard">
         <section key={article_id} id="title">
           <em>
             <u>{article.title}</u> (... continued)
@@ -41,30 +41,30 @@ class Article extends Component {
           const { body, author, votes, comment_id, article_id } = comment;
 
           return [
-            <div key={comment_id} className="commentBorder">
-              <p id="author">
-                <strong>{author}</strong>
-              </p>
-              <p className="comment">{body}</p>
-              <p>Votes {votes}</p>
-
-              {author === this.props.user ? (
-                <button onClick={() => this.removeComment(comment_id)}>
-                  delete comment
-                </button>
-              ) : (
-                <section id="votes">
-                  {" "}
-                  <Vote
-                    id={comment_id}
-                    path={"comments"}
-                    votes={votes}
-                    // fetchComments={this.gettingComments}
-                    article_id={article_id}
-                  />
-                </section>
-              )}
-            </div>,
+            <ul key={comment_id} className="DisplayCard">
+              <li>
+                <p id="author">
+                  <strong>{author}</strong>
+                </p>
+                <p className="comment">{body}</p>
+                <p>Votes {votes}</p>
+                {author === this.props.user ? (
+                  <button onClick={() => this.removeComment(comment_id)}>
+                    delete comment
+                  </button>
+                ) : (
+                  <section id="votes">
+                    {" "}
+                    <Vote
+                      id={comment_id}
+                      path={"comments"}
+                      votes={votes}
+                      article_id={article_id}
+                    />
+                  </section>
+                )}
+              </li>
+            </ul>,
           ];
         })}
       </div>

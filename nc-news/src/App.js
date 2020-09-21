@@ -15,10 +15,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        {" "}
         <NavBar user={this.state.user} />
         <Router>
-          <Articles path="/" />
           <Articles path="/articles" user={this.state.user} />
           <Article path="/articles/:article_id" user={this.state.user} />
           <Articles path="/topics/:topic" />

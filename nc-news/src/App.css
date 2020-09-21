@@ -1,3 +1,12 @@
+.App {
+  background-color: rgb(151, 197, 250);
+  text-align: center;
+  list-style: none;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  border-radius: 15px;
+  align-items: center;
+}
+
 #navbar {
   font-family: "Courier New", Courier, monospace;
   color: rgba(0, 23, 31, 1);
@@ -9,30 +18,32 @@
   padding: 10px;
   text-align: center;
 }
+ul {
+  list-style: none;
+}
 
-#sort {
+.select {
   color: rgba(0, 23, 31, 1);
   background-color: rgba(0, 168, 232, 1);
 }
 
-#order {
-  color: rgba(0, 23, 31, 1);
-  background-color: rgba(0, 168, 232, 1);
-}
-
+*/
+/* 
+*/
 #commentForm {
   color: rgba(0, 23, 31, 1);
   background-color: rgba(0, 168, 232, 1);
 }
 
-#card {
-  border-radius: 25px;
-  border: 5px solid rgba(0, 126, 167, 1);
+#DisplayCard {
+  border-radius: 50px;
+  border: 10px solid rgb(37, 48, 94);
   padding: 1ex 1ex 1ex 1ex;
-  background-color: #e8eddf;
-  position: relative;
-  margin-right: 3em;
+  background-color: rgb(245, 243, 225);
+
+  margin-right: auto;
 }
+/*
 
 #singleCard {
   border-radius: 25px;
@@ -41,9 +52,9 @@
   margin-bottom: 10px;
   background-color: #e8eddf;
   /* display: grid; */
-}
+/* } */
 
-#topicColour {
+/* #topicColour {
   color: rgb(17, 104, 29);
   font-weight: bolder;
 }
@@ -73,12 +84,12 @@
   border-radius: 25px;
   border: 5px solid #73ad21;
 }
-
-.commentBorder:nth-last-of-type(odd) {
+*/
+.DisplayCard:nth-last-of-type(odd) {
   background-color: rgb(78, 117, 201);
   border-radius: 25px;
 }
-.commentBorder:nth-last-of-type(even) {
+.DisplayCard:nth-last-of-type(even) {
   background-color: rgb(141, 141, 141);
   border-radius: 25px;
 }
@@ -87,15 +98,6 @@
   list-style: none;
   color: rgba(0, 23, 31, 1);
 }
-.App {
-  background-color: rgb(151, 197, 250);
-  text-align: center;
-  list-style: none;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  border-radius: 15px;
-  align-items: center;
-}
-
 a {
   position: relative;
   display: inline-block;
@@ -123,11 +125,7 @@ a:hover::before {
   width: 100%;
 }
 
-/* #topicList {
-  color: green;
-} */
-
-#topicsMap {
+/* #topicsMap {
   list-style: none;
   text-align: center;
   color: black;
@@ -199,4 +197,4 @@ a:hover::before {
   to {
     transform: rotate(360deg);
   }
-}
+} */

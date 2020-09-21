@@ -38,7 +38,7 @@ class Articles extends Component {
         <form>
           <label>sort by </label>
           <select
-            id="sort"
+            className="select"
             onChange={(event) => {
               this.gettingArticleList(
                 topic,
@@ -56,7 +56,7 @@ class Articles extends Component {
           </select>
           <label>order by</label>
           <select
-            id="order"
+            className="select"
             onChange={(event) => {
               this.gettingArticleList(
                 topic,
