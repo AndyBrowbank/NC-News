@@ -21,16 +21,14 @@ class Topics extends Component {
 
     return (
       <div>
-        <ul id="topicsMap">
-          {topics.map((topic) => {
-            const { slug } = topic;
-            return (
-              <section key={slug}>
-                <Link to={`/topics/${slug}`}>{slug}</Link>
-              </section>
-            );
-          })}
-        </ul>
+        {topics.map((topic) => {
+          const { slug } = topic;
+          return (
+            <span key={slug}>
+              <Link to={`/topics/${slug}`}> {slug}</Link>&nbsp;&nbsp;
+            </span>
+          );
+        })}
       </div>
     );
   }

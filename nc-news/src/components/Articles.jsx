@@ -33,7 +33,7 @@ class Articles extends Component {
     if (isLoading) return <h3>...Loading page please wait...</h3>;
 
     return (
-      <div>
+      <div className="articles">
         <h3>List of {topic} articles below</h3>
         <form>
           <label>sort by </label>
@@ -72,6 +72,7 @@ class Articles extends Component {
             <option value="desc">descending</option>
           </select>
         </form>
+
         <ul>
           <li>
             {articles.map((article) => {

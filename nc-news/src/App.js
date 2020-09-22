@@ -1,6 +1,7 @@
 import React from "react";
 import { Router } from "@reach/router";
 import NavBar from "./components/NavBar.jsx";
+import Header from "./components/Header.jsx";
 import Articles from "./components/Articles.jsx";
 import Article from "./components/Article.jsx";
 import ErrorMessage from "./components/ErrorMessage.jsx";
@@ -15,6 +16,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <Header />
         <NavBar user={this.state.user} />
         <Router>
           <Articles path="/articles" user={this.state.user} />
