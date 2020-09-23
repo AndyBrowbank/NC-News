@@ -15,12 +15,12 @@ const ArticleCard = (props) => {
 
   return (
     <div id="DisplayCard">
-      <h4 id="title">
+      <h3 id="title">
         <u>{title}</u> written by&nbsp;&nbsp;
         <strong>
           <i>{author}</i>
         </strong>
-      </h4>
+      </h3>
       <p></p>date created &nbsp;&nbsp;
       <h4 id="date_created">
         {created_at.slice(0, 10).split("-").reverse().join("-")}
@@ -38,13 +38,12 @@ const ArticleCard = (props) => {
           Read More
         </Link>
       </h4>
-      <li id="rcorners2" className="articleCard">
-        <h4>TOPIC -- {topic}</h4>
-        Comment count: {comment_count}
-        <span role="img" aria-label="speech bubble">
-          💬
-        </span>
-      </li>
+      <h4 id="rcorners2" className="articleCard"></h4>
+      <h4>TOPIC -- {topic}</h4>
+      Comment count: {comment_count}
+      <span role="img" aria-label="speech bubble">
+        💬
+      </span>
     </div>
   );
 };

@@ -54,7 +54,7 @@ class Articles extends Component {
             <option value="comment_count">comment count</option>
             <option value="votes">votes</option>
           </select>
-          <label>order by</label>
+          <label> order by </label>
           <select
             className="select"
             onChange={(event) => {

@@ -25,7 +25,11 @@ class Topics extends Component {
           const { slug } = topic;
           return (
             <span key={slug}>
-              <Link to={`/topics/${slug}`}> {slug}</Link>&nbsp;&nbsp;
+              <Link id="topics" to={`/topics/${slug}`}>
+                {" "}
+                {slug}{" "}
+              </Link>
+              &nbsp;&nbsp;
             </span>
           );
         })}

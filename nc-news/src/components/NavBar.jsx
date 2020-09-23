@@ -9,7 +9,9 @@ const NavBar = (props) => {
         Logged in as <span id="author">{props.user}</span>
       </div>
       <div className="box">
-        <Link to="/articles">Display All Articles</Link>
+        <Link to="/articles" id="dispAllArts">
+          Display All Articles
+        </Link>
         <Topics />
       </div>
     </div>

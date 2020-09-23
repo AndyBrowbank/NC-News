@@ -32,14 +32,26 @@ div.container {
   background-color: lightsteelblue;
 }
 
+#dispAllArts:hover {
+  background-color: rgb(231, 217, 20);
+  color: orangered;
+  border-radius: 5px;
+}
+#topics:hover {
+  background-color: rgb(231, 217, 20);
+  color: orangered;
+  border-radius: 5px;
+}
+
 div.box {
   box-sizing: border-box;
   width: 50%;
   background-color: rgb(149, 209, 233);
   border: 1px solid rgb(78, 117, 201);
   border-radius: 5px;
-
+  margin-top: 1ex;
   margin-bottom: 1ex;
+  margin-left: 1ex;
 }
 
 .login {
@@ -125,7 +137,9 @@ a::before {
   content: attr(data-content);
   top: 0;
   left: 0;
-  color: midnightblue;
+  background-color: rgb(231, 217, 20);
+  color: orangered;
+  border-radius: 5px;
   text-decoration: underline;
   overflow: hidden;
   transition: width 275ms ease;
