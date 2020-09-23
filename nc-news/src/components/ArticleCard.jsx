@@ -39,7 +39,9 @@ const ArticleCard = (props) => {
         </Link>
       </h4>
       <h4 id="rcorners2" className="articleCard"></h4>
-      <h4>TOPIC -- {topic}</h4>
+      <h4>
+        TOPIC -- <span id="topic">{topic}</span>
+      </h4>
       Comment count: {comment_count}
       <span role="img" aria-label="speech bubble">
         💬

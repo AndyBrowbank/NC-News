@@ -34,7 +34,9 @@ class Articles extends Component {
 
     return (
       <div className="articles">
-        <h3>List of {topic} articles below</h3>
+        <h3>
+          List of<span id="topic"> {topic}</span> articles below
+        </h3>
         <form>
           <label>sort by </label>
           <select

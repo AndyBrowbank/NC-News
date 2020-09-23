@@ -118,6 +118,10 @@ li {
   margin-left: 1ex;
 }
 
+#topic {
+  color: purple;
+}
+
 .articleCardTitle {
   font-weight: bolder;
 
