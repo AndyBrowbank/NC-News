@@ -16,11 +16,19 @@ class Vote extends Component {
     return (
       <div id="voteSection">
         <section id="votes">
-          {voteChange}
-          <button onClick={() => this.handleVoteClick(1)} disabled={disable}>
+          {voteChange}&nbsp;
+          <button
+            className="vote"
+            onClick={() => this.handleVoteClick(1)}
+            disabled={disable}
+          >
             <span role="img" aria-label="thumbs up"></span>👍
           </button>
-          <button onClick={() => this.handleVoteClick(-1)} disabled={disable}>
+          <button
+            className="vote"
+            onClick={() => this.handleVoteClick(-1)}
+            disabled={disable}
+          >
             <span role="img" aria-label="thumbs down"></span>
             👎
           </button>
