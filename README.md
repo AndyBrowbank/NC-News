@@ -2,9 +2,10 @@ NC NEWS
 
 NC-News is a Reddit-like news app, in which you can
 
-read articles
-leave comments
-vote on both articles and comments.
+== read articles
+== leave comments
+== vote on both articles and comments.
+
 Hosted version You can find the hosted version of the app here.
 
 The homepage contains a list of articles, which you can sort by number of votes, comments, and the date it was published. You can choose to list articles by topic.
