@@ -1,4 +1,4 @@
-NC NEWS
+##**NC NEWS**
 
 NC-News is a Reddit-like news app, in which you can
 
