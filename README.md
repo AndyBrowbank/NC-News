@@ -6,7 +6,7 @@ NC-News is a Reddit-like news app, in which you can
 - leave comments
 - vote on both articles and comments.
 
-** Hosted version **
+**Hosted version**
 You can find the hosted version of the app [here](https://nc-nooz.netlify.app/).
 
 The homepage contains a list of articles, which you can sort by number of votes, comments, and the date it was published. You can choose to list articles by topic.
@@ -39,8 +39,8 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use eject. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-** Back-end links This app uses a bespoke api, which you can find [here](https://h-e-r-o-i-k.herokuapp.com/)
+**Back-end links This app uses a bespoke api, which you can find** [here](https://h-e-r-o-i-k.herokuapp.com/)
 
-** You can find the repository for the back-end project [here](https://github.com/northcoders/be-nc-news)
+**You can find the repository for the back-end project** [here](https://github.com/northcoders/be-nc-news)
 
 This project was bootstrapped with Create React App.
